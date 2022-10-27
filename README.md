@@ -12,7 +12,7 @@ MATLAB R2021a on macOS Monterey
 
 ## Prerequisites
 
-1. MATLAB
+1. MATLAB R2021a or later
 2. MATLAB Parallel Computing Toolbox (accelerate drastically)
 
 ## Installation

@@ -44,7 +44,9 @@ DEERefiner supports all ASCII file with distance in nm as first column and proba
 
 https://user-images.githubusercontent.com/52059244/197706607-dffce381-2bbf-4b6b-acd8-6867cef81ce7.mov
 
-### Step 3- Removing wrongly-loaded distance distribution files (optional)
+### Step 3- Reselect target distance (optional)
+
+### Step 4- Removing wrongly-loaded distance distribution files (optional)
 
 Users can use the feature to remove wrongly-loaded distance distribution.
 

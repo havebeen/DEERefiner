@@ -66,12 +66,12 @@ However, the definition of each parameter are listed below in case users want to
 8. Usage of cores: Total CPU cores will be used during simulation.
 
 ### Step 5- Executing simulations
-1. Execute simulation with GUI
+Option 1. Execute simulation with GUI
   Click the Start buttom.
 
 https://user-images.githubusercontent.com/52059244/197730047-d7a84555-ab56-41e4-918c-7af96cab41ed.mov
   
-2. Execute simulation with command line
+Option 2. Execute simulation with command line
 ```MATLAB
 % simulation execution in MATLAB
 Job = runFilesCluterExecutor;

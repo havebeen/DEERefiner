@@ -1,0 +1,14 @@
+#resname
+ARG
+#mapping
+N	N
+CA	CA
+C	C
+O	O
+CB	SC1
+CG	SC1
+CD	SC1
+NE	SC2
+CZ	SC2
+NH1	SC2
+NH2	SC2

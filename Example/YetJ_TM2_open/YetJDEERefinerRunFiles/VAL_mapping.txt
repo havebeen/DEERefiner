@@ -1,0 +1,10 @@
+#resname
+VAL
+#mapping
+N	N
+CA	CA
+C	C
+O	O
+CB	SC1
+CG1	SC1
+CG2	SC1

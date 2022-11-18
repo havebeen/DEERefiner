@@ -112,6 +112,16 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructure = newCandidateFormatedStructure;
             monteCarloOldDistanceDistribution = monteCarloNewDistanceDistribution;
             monteCarloOldGeometry = monteCarloNewCandidateGeometry;
+            if RMSEFirstPhase(monteCarloSteps+1) <= RMSE
+
+                increaseFirstRMSEPassedNumber(firstRMSEPassedNumberFileName)
+                currentStatusUpdator(currentStatusFileName, 3)
+
+                monteCarloOldGeometryPhaseTwo = monteCarloOldGeometry;
+                monteCarloOldStructurePhaseTwo = monteCarloOldStructure;
+    %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
+                break
+            end
         else
             monteCarloOldContactedResidueIndex = monteCarloOldContactedResidueIndex;
             monteCarloOldStructure = monteCarloOldStructure;
@@ -119,16 +129,6 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldGeometry = monteCarloOldGeometry;
         end
 %         phaseOnePassedFileName = strcat(timeStamp, "_phase1_passed", num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
-        if RMSEFirstPhase(monteCarloSteps+1) <= RMSE
-            
-            increaseFirstRMSEPassedNumber(firstRMSEPassedNumberFileName)
-            currentStatusUpdator(currentStatusFileName, 3)
-            
-            monteCarloOldGeometryPhaseTwo = monteCarloOldGeometry;
-            monteCarloOldStructurePhaseTwo = monteCarloOldStructure;
-%             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
-            break
-        end
     end
     if exist('monteCarloOldStructurePhaseTwo', 'var') ~= 1
         continue
@@ -255,6 +255,15 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseThree;
             monteCarloOldDistanceDistributionPhaseThree = monteCarloNewDistanceDistributionPhaseThree;
             monteCarloOldGeometryPhaseThree = monteCarloNewCandidateGeometryPhaseThree;
+            if RMSEThirdPhase(monteCarloStepsPhaseThree+1) <= RMSE+0.2
+                increaseSecondRMSEPassedNumber(secondRMSEPassedNumberFileName)
+
+                currentStatusUpdator(currentStatusFileName, 8)
+                monteCarloOldGeometryPhaseFour = monteCarloOldGeometryPhaseThree;
+                monteCarloOldStructurePhaseFour = monteCarloOldStructurePhaseThree;
+    %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
+                break
+            end
         else
             monteCarloOldContactedResidueIndexPhaseThree = monteCarloOldContactedResidueIndexPhaseThree;
             monteCarloOldStructurePhaseThree = monteCarloOldStructurePhaseThree;
@@ -262,15 +271,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldGeometryPhaseThree = monteCarloOldGeometryPhaseThree;
         end
 %         phaseOnePassedFileName = strcat(timeStamp, "_phase1_passed", num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
-        if RMSEThirdPhase(monteCarloStepsPhaseThree+1) <= RMSE*1.1
-            increaseSecondRMSEPassedNumber(secondRMSEPassedNumberFileName)
-            
-            currentStatusUpdator(currentStatusFileName, 8)
-            monteCarloOldGeometryPhaseFour = monteCarloOldGeometryPhaseThree;
-            monteCarloOldStructurePhaseFour = monteCarloOldStructurePhaseThree;
-%             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
-            break
-        end 
+
     end
     if exist('monteCarloOldStructurePhaseFour', 'var') ~= 1
         continue
@@ -405,6 +406,15 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFive;
             monteCarloOldDistanceDistributionPhaseFive = monteCarloNewDistanceDistributionPhaseFive;
             monteCarloOldGeometryPhaseFive = monteCarloNewCandidateGeometryPhaseFive;
+            if RMSEFifthPhase(monteCarloStepsPhaseFive+1) <= RMSE+0.2
+                increaseThirdRMSEPassedNumber(thirdRMSEPassedNumberFileName)
+
+                currentStatusUpdator(currentStatusFileName, 13)
+                monteCarloOldGeometryPhaseSix = monteCarloOldGeometryPhaseFive;
+                monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
+    %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
+                break
+            end 
         else
             monteCarloOldContactedResidueIndexPhaseFive = monteCarloOldContactedResidueIndexPhaseFive;
             monteCarloOldStructurePhaseFive = monteCarloOldStructurePhaseFive;
@@ -412,15 +422,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldGeometryPhaseFive = monteCarloOldGeometryPhaseFive;
         end
 %         phaseOnePassedFileName = strcat(timeStamp, "_phase1_passed", num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
-        if RMSEFifthPhase(monteCarloStepsPhaseFive+1) <= RMSE*1.1
-            increaseThirdRMSEPassedNumber(thirdRMSEPassedNumberFileName)
-            
-            currentStatusUpdator(currentStatusFileName, 13)
-            monteCarloOldGeometryPhaseSix = monteCarloOldGeometryPhaseFive;
-            monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
-%             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
-            break
-        end 
+
     end
     if exist('monteCarloOldStructurePhaseSix', 'var') ~= 1
         continue
@@ -559,6 +561,15 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSeven;
             monteCarloOldDistanceDistributionPhaseSeven = monteCarloNewDistanceDistributionPhaseSeven;
             monteCarloOldGeometryPhaseSeven = monteCarloNewCandidateGeometryPhaseSeven;
+            if RMSESeventhPhase(monteCarloStepsPhaseSeven+1) <= RMSE+0.2
+                increaseFourthRMSEPassedNumber(fourthRMSEPassedNumberFileName)
+
+                currentStatusUpdator(currentStatusFileName, 18)
+                monteCarloOldGeometryPhaseEight = monteCarloOldGeometryPhaseSeven;
+                monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
+    %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
+                break
+            end 
         else
             monteCarloOldContactedResidueIndexPhaseSeven = monteCarloOldContactedResidueIndexPhaseSeven;
             monteCarloOldStructurePhaseSeven = monteCarloOldStructurePhaseSeven;
@@ -566,15 +577,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldGeometryPhaseSeven = monteCarloOldGeometryPhaseSeven;
         end
 %         phaseOnePassedFileName = strcat(timeStamp, "_phase1_passed", num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
-        if RMSESeventhPhase(monteCarloStepsPhaseSeven+1) <= RMSE*1.1
-            increaseFourthRMSEPassedNumber(fourthRMSEPassedNumberFileName)
-            
-            currentStatusUpdator(currentStatusFileName, 18)
-            monteCarloOldGeometryPhaseEight = monteCarloOldGeometryPhaseSeven;
-            monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
-%             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
-            break
-        end 
+
     end
     if exist('monteCarloOldStructurePhaseEight', 'var') ~= 1
         continue
@@ -706,6 +709,81 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseNine;
             monteCarloOldDistanceDistributionPhaseNine = monteCarloNewDistanceDistributionPhaseNine;
             monteCarloOldGeometryPhaseNine = monteCarloNewCandidateGeometryPhaseNine;
+            if RMSENinethPhase(monteCarloStepsPhaseNine+1) <= RMSE+0.2 && clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1) <= maximalClashes+2
+                increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
+
+                fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
+                candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+
+                currentStatusUpdator(currentStatusFileName, 23)
+
+                if fifthRMSEPassedNumber == numberOfStructure
+                    FINALPDBENSEMBLEFileGenerator(timeStamp)
+                    pause(5)
+                    FINALPDBENSEMBLEFile = dir('*FINALPDBENSEMBLE_*');
+                    FINALPDBENSEMBLEFileName = FINALPDBENSEMBLEFile.name;
+
+    %                 FINALPDBENSEMBLE = pdbModelsLoader(FINALPDBENSEMBLEFileName);
+    %                 for FINALPDBNumber = 1:length(FINALPDBENSEMBLE(1, 1, :))
+    %                     for labelingIndex = 1:length(residue1List)
+    %                         [distanceDistributionFinal(:, labelingIndex, FINALPDBNumber), ~] = DEERefineMTSSLLabeling(FINALPDBENSEMBLE(:, :, FINALPDBNumber), residue1List(labelingIndex), residue2List(labelingIndex));
+    %                         distanceDistributionFinal(:, labelingIndex, FINALPDBNumber) = distanceDistributionFinal(:, labelingIndex, FINALPDBNumber)/sum(distanceDistributionFinal(:, labelingIndex, FINALPDBNumber));
+    %                     end
+    %                 end
+    %                 for FINALPDBNumber = 1:length(FINALPDBENSEMBLE(1, 1, :))
+    %                     distanceDistributionFinalForJSD(:, FINALPDBNumber) = reshape(distanceDistributionFinal(:, :, FINALPDBNumber), [], 1);
+    %                 end
+                    [distanceDistributionFinalForJSD, FINALPDBENSEMBLE] = distanceDistributionFinalForJSDGenerator(FINALPDBENSEMBLEFileName, residue1List, residue2List);
+    %                 for distanceDistributionNumber = 1:length(distanceDistributionFullPath)
+    %                     targetDistanceDistributionFinal(:, :, distanceDistributionNumber) = distanceDistributionFinalLoader(distanceDistributionFullPath(distanceDistributionNumber));
+    %                 end
+    %                 targetDistanceDistributionFinalForJSD = reshape(targetDistanceDistributionFinal(:, 2, :), [], 1);
+                    [targetDistanceDistributionFinalForJSD, targetDistanceDistributionFinal] = targetDistanceDistributionFinalForJSDGenerator(distanceDistributionFullPath);
+
+
+
+                    for FINALPDBNumber = 1:length(FINALPDBENSEMBLE(1, 1, :))
+                        JensenShannonDivergence(FINALPDBNumber) = convertingDistanceDistributions2JensenShannonDivergence(targetDistanceDistributionFinalForJSD, distanceDistributionFinalForJSD(:, FINALPDBNumber));
+                    end
+
+    %                 FINALPDBFileName = strcat("FINALPDB_",  timeStamp, ".pdb");
+    %                 [~, minimalJSDIndex] = min(JensenShannonDivergence);
+    %                 pdbSaver(FINALPDBFileName, FINALPDBENSEMBLE(:, :, minimalJSDIndex));
+                    minimalJSDIndex = minimalJSDPDBGenerator(FINALPDBENSEMBLE, JensenShannonDivergence, timeStamp);
+    %                 for labelingIndex = 1:length(residue1List)
+    %                     [DistanceDistributionFinal(:, 2, labelingIndex), DistanceDistributionFinal(:, 1, labelingIndex)] = DEERefineMTSSLLabeling(FINALPDBENSEMBLE(:, :, minimalJSDIndex), residue1List(labelingIndex), residue2List(labelingIndex));
+    %                 end
+    %                 
+    %                 normalizedTargetDistanceDistributionFinal = targetDistanceDistributionFinal;
+    %                 for distanceDistributionNumber = 1:length(distanceDistributionFullPath)
+    %                     normalizedTargetDistanceDistributionFinal(:, 2, distanceDistributionNumber) = targetDistanceDistributionFinal(:, 2, distanceDistributionNumber)/max(targetDistanceDistributionFinal(:, 2, distanceDistributionNumber));
+    %                 end
+    %                 
+    %                 DEERefineFinalDistanceDistributionFileName = strcat("FINALPr_",  timeStamp, ".mat");
+    %                 DEERefineFinalDistanceDistribution = struct('targetDistanceDistributionFinal', normalizedTargetDistanceDistributionFinal,...
+    %                                                             'DistanceDistributionFinal', DistanceDistributionFinal);
+    %                 save(DEERefineFinalDistanceDistributionFileName, '-struct', 'DEERefineFinalDistanceDistribution');
+                    DEERefineFinalFileGenerator(residue1List, residue2List, FINALPDBENSEMBLE, minimalJSDIndex, targetDistanceDistributionFinal, distanceDistributionFullPath, timeStamp)
+    %                 copyfile(DEERefineFinalDistanceDistributionFileName, '..');
+    %                 copyfile(FINALPDBENSEMBLEFileName, '..');
+    %                 copyfile(FINALPDBFileName, '..');
+                    DEERefineFinalFileCopier(timeStamp)
+                    closereq
+                    return
+                elseif fifthRMSEPassedNumber > numberOfStructure
+                    return
+                end
+                % GLOBAL X
+                % X = 0;
+                % X = X+1;
+                % finalSturcture(:, :, X) =
+                % newCandidateFormatedStructurePhaseNine;
+                % if X >numberOfStructure
+                %   cancel(job)
+                % end
+    %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
+                break
+            end
         else
             monteCarloOldContactedResidueIndexPhaseNine = monteCarloOldContactedResidueIndexPhaseNine;
             monteCarloOldStructurePhaseNine = monteCarloOldStructurePhaseNine;
@@ -713,85 +791,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldGeometryPhaseNine = monteCarloOldGeometryPhaseNine;
         end
 %         phaseOnePassedFileName = strcat(timeStamp, "_phase1_passed", num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
-        if RMSENinethPhase(monteCarloStepsPhaseNine+1) <= RMSE*1.1 && clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1) <= maximalClashes+2
-            increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
-            
-            fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-            candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
-            
-            currentStatusUpdator(currentStatusFileName, 23)
-            
-            if fifthRMSEPassedNumber == numberOfStructure
-                FINALPDBENSEMBLEFileGenerator(timeStamp)
-                pause(5)
-                FINALPDBENSEMBLEFile = dir('*FINALPDBENSEMBLE_*');
-                FINALPDBENSEMBLEFileName = FINALPDBENSEMBLEFile.name;
 
-%                 FINALPDBENSEMBLE = pdbModelsLoader(FINALPDBENSEMBLEFileName);
-%                 for FINALPDBNumber = 1:length(FINALPDBENSEMBLE(1, 1, :))
-%                     for labelingIndex = 1:length(residue1List)
-%                         [distanceDistributionFinal(:, labelingIndex, FINALPDBNumber), ~] = DEERefineMTSSLLabeling(FINALPDBENSEMBLE(:, :, FINALPDBNumber), residue1List(labelingIndex), residue2List(labelingIndex));
-%                         distanceDistributionFinal(:, labelingIndex, FINALPDBNumber) = distanceDistributionFinal(:, labelingIndex, FINALPDBNumber)/sum(distanceDistributionFinal(:, labelingIndex, FINALPDBNumber));
-%                     end
-%                 end
-%                 for FINALPDBNumber = 1:length(FINALPDBENSEMBLE(1, 1, :))
-%                     distanceDistributionFinalForJSD(:, FINALPDBNumber) = reshape(distanceDistributionFinal(:, :, FINALPDBNumber), [], 1);
-%                 end
-                [distanceDistributionFinalForJSD, FINALPDBENSEMBLE] = distanceDistributionFinalForJSDGenerator(FINALPDBENSEMBLEFileName, residue1List, residue2List);
-%                 for distanceDistributionNumber = 1:length(distanceDistributionFullPath)
-%                     targetDistanceDistributionFinal(:, :, distanceDistributionNumber) = distanceDistributionFinalLoader(distanceDistributionFullPath(distanceDistributionNumber));
-%                 end
-%                 targetDistanceDistributionFinalForJSD = reshape(targetDistanceDistributionFinal(:, 2, :), [], 1);
-                [targetDistanceDistributionFinalForJSD, targetDistanceDistributionFinal] = targetDistanceDistributionFinalForJSDGenerator(distanceDistributionFullPath);
-                
-                
-                
-                for FINALPDBNumber = 1:length(FINALPDBENSEMBLE(1, 1, :))
-                    JensenShannonDivergence(FINALPDBNumber) = convertingDistanceDistributions2JensenShannonDivergence(targetDistanceDistributionFinalForJSD, distanceDistributionFinalForJSD(:, FINALPDBNumber));
-                end
-                
-%                 FINALPDBFileName = strcat("FINALPDB_",  timeStamp, ".pdb");
-%                 [~, minimalJSDIndex] = min(JensenShannonDivergence);
-%                 pdbSaver(FINALPDBFileName, FINALPDBENSEMBLE(:, :, minimalJSDIndex));
-                minimalJSDIndex = minimalJSDPDBGenerator(FINALPDBENSEMBLE, JensenShannonDivergence, timeStamp);
-%                 for labelingIndex = 1:length(residue1List)
-%                     [DistanceDistributionFinal(:, 2, labelingIndex), DistanceDistributionFinal(:, 1, labelingIndex)] = DEERefineMTSSLLabeling(FINALPDBENSEMBLE(:, :, minimalJSDIndex), residue1List(labelingIndex), residue2List(labelingIndex));
-%                 end
-%                 
-%                 normalizedTargetDistanceDistributionFinal = targetDistanceDistributionFinal;
-%                 for distanceDistributionNumber = 1:length(distanceDistributionFullPath)
-%                     normalizedTargetDistanceDistributionFinal(:, 2, distanceDistributionNumber) = targetDistanceDistributionFinal(:, 2, distanceDistributionNumber)/max(targetDistanceDistributionFinal(:, 2, distanceDistributionNumber));
-%                 end
-%                 
-%                 DEERefineFinalDistanceDistributionFileName = strcat("FINALPr_",  timeStamp, ".mat");
-%                 DEERefineFinalDistanceDistribution = struct('targetDistanceDistributionFinal', normalizedTargetDistanceDistributionFinal,...
-%                                                             'DistanceDistributionFinal', DistanceDistributionFinal);
-%                 save(DEERefineFinalDistanceDistributionFileName, '-struct', 'DEERefineFinalDistanceDistribution');
-                DEERefineFinalFileGenerator(residue1List, residue2List, FINALPDBENSEMBLE, minimalJSDIndex, targetDistanceDistributionFinal, distanceDistributionFullPath, timeStamp)
-%                 copyfile(DEERefineFinalDistanceDistributionFileName, '..');
-%                 copyfile(FINALPDBENSEMBLEFileName, '..');
-%                 copyfile(FINALPDBFileName, '..');
-                DEERefineFinalFileCopier(timeStamp)
-                closereq
-                return
-            elseif fifthRMSEPassedNumber > numberOfStructure
-                return
-            end
-            % GLOBAL X
-            % X = 0;
-            % X = X+1;
-            % finalSturcture(:, :, X) =
-            % newCandidateFormatedStructurePhaseNine;
-            % if X >numberOfStructure
-            %   cancel(job)
-            % end
-%             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
-            break
-        end 
     end
-    
-    
-    
-    
-    
+
 end

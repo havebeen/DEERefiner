@@ -51,7 +51,7 @@ for structureIndex = 1:structureIndexEnd
         [initialSimulatedDistanceDistributionY(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(initialMutatedFormatedPDB, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
     end
     
-%     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     normalizedInitialSimulatedDistanceDistributionY = initialSimulatedDistanceDistributionY./sum(initialSimulatedDistanceDistributionY);
     
@@ -107,7 +107,7 @@ for structureIndex = 1:structureIndexEnd
         [clashesIfMovingCriterion, clashedResidueNumber(monteCarloSteps+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndex), length(newCandidateConteactedResidueIndex), 0, monteCarloClashesTemperature);
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 2)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
             monteCarloOldContactedResidueIndex = newCandidateConteactedResidueIndex;
             monteCarloOldStructure = newCandidateFormatedStructure;
             monteCarloOldDistanceDistribution = monteCarloNewDistanceDistribution;
@@ -146,6 +146,7 @@ for structureIndex = 1:structureIndexEnd
     
     phiPsiAngleVariationAtLoopPhaseTwo = phiPsiAngleVariationAtLoop*0.4;
     clashesCriterionPhaseTwo = 2.3;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseTwo = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseTwo, clashesCriterionPhaseTwo);
     clashedResidueNumberPhaseTwo(1) = length(monteCarloOldContactedResidueIndexPhaseTwo);
@@ -170,6 +171,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseTwo = newCandidateConteactedResidueIndexPhaseTwo;
             monteCarloOldStructurePhaseTwo = newCandidateFormatedStructurePhaseTwo;
             monteCarloOldGeometryPhaseTwo = monteCarloNewCandidateGeometryPhaseTwo;
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, 1, phaseTwoSteps); % save for test
             if clashedResidueNumberPhaseTwo(phaseTwoSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 5)
                 monteCarloOldGeometryPhaseThree = monteCarloNewCandidateGeometryPhaseTwo;
@@ -195,6 +197,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseThree monteCarloOldStructurePhaseThree...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
     phiPsiAngleVariationAtLoopPhaseThree = phiPsiAngleVariationAtLoop*0.4;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseThree(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseThree, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
@@ -250,7 +253,7 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 7)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, 1, monteCarloStepsPhaseThree); % save for test
             monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
             monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseThree;
             monteCarloOldDistanceDistributionPhaseThree = monteCarloNewDistanceDistributionPhaseThree;
@@ -292,6 +295,7 @@ for structureIndex = 1:structureIndexEnd
     
     phiPsiAngleVariationAtLoopPhaseFour = phiPsiAngleVariationAtLoop*0.4;
     clashesCriterionPhaseFour = 2.32;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFour, clashesCriterionPhaseFour);
     clashedResidueNumberPhaseFour(1) = length(monteCarloOldContactedResidueIndexPhaseFour);
@@ -317,6 +321,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseFour = newCandidateConteactedResidueIndexPhaseFour;
             monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
             monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, 1, phaseFourSteps); % save for test
             if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 10)
                 monteCarloOldGeometryPhaseFive = monteCarloNewCandidateGeometryPhaseFour;
@@ -345,6 +350,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseFive monteCarloOldStructurePhaseFive...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
     phiPsiAngleVariationAtLoopPhaseFive = phiPsiAngleVariationAtLoop*0.4;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseFive(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseFive, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
@@ -401,7 +407,7 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 12)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, 1, monteCarloStepsPhaseFive); % save for test
             monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
             monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFive;
             monteCarloOldDistanceDistributionPhaseFive = monteCarloNewDistanceDistributionPhaseFive;
@@ -446,6 +452,7 @@ for structureIndex = 1:structureIndexEnd
     
     phiPsiAngleVariationAtLoopPhaseSix = phiPsiAngleVariationAtLoop*0.4;
     clashesCriterionPhaseSix = 2.34;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSix, clashesCriterionPhaseSix);
     clashedResidueNumberPhaseSix(1) = length(monteCarloOldContactedResidueIndexPhaseSix);
@@ -470,6 +477,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseSix = newCandidateConteactedResidueIndexPhaseSix;
             monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
             monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, 1, phaseSixSteps); % save for test
             if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 15)
                 monteCarloOldGeometryPhaseSeven = monteCarloNewCandidateGeometryPhaseSix;
@@ -500,6 +508,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseSeven monteCarloOldStructurePhaseSeven...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
     phiPsiAngleVariationAtLoopPhaseSeven = phiPsiAngleVariationAtLoop*0.4;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseSeven(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseSeven, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
@@ -556,7 +565,7 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 17)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, 1, monteCarloStepsPhaseSeven); % save for test
             monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
             monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSeven;
             monteCarloOldDistanceDistributionPhaseSeven = monteCarloNewDistanceDistributionPhaseSeven;
@@ -598,6 +607,7 @@ for structureIndex = 1:structureIndexEnd
     
     phiPsiAngleVariationAtLoopPhaseEight = phiPsiAngleVariationAtLoop*0.4;
     clashesCriterionPhaseEight = 2.35;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseEight, clashesCriterionPhaseEight);
     clashedResidueNumberPhaseEight(1) = length(monteCarloOldContactedResidueIndexPhaseEight);
@@ -622,6 +632,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseEight = newCandidateConteactedResidueIndexPhaseEight;
             monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
             monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, 1, phaseEightSteps); % save for test
             if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 20)
                 monteCarloOldGeometryPhaseNine = monteCarloNewCandidateGeometryPhaseEight;
@@ -648,6 +659,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseNine monteCarloOldStructurePhaseNine...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
     phiPsiAngleVariationAtLoopPhaseNine = phiPsiAngleVariationAtLoop*0.4;
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseNine(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseNine, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
@@ -704,7 +716,7 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 22)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
+            pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, 1, monteCarloStepsPhaseNine); % save for test
             monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
             monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseNine;
             monteCarloOldDistanceDistributionPhaseNine = monteCarloNewDistanceDistributionPhaseNine;

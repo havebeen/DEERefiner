@@ -144,7 +144,7 @@ for structureIndex = 1:structureIndexEnd
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
         
     
-    phiPsiAngleVariationAtLoopPhaseTwo = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseTwo = 0.1;
     clashesCriterionPhaseTwo = 2.3;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
@@ -196,7 +196,7 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseThree monteCarloOldStructurePhaseThree...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
-    phiPsiAngleVariationAtLoopPhaseThree = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseThree = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -293,7 +293,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     
-    phiPsiAngleVariationAtLoopPhaseFour = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseFour = 0.1;
     clashesCriterionPhaseFour = 2.32;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
@@ -349,7 +349,7 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseFive monteCarloOldStructurePhaseFive...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
-    phiPsiAngleVariationAtLoopPhaseFive = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseFive = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -450,7 +450,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     
-    phiPsiAngleVariationAtLoopPhaseSix = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseSix = 0.1;
     clashesCriterionPhaseSix = 2.34;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
@@ -507,7 +507,7 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseSeven monteCarloOldStructurePhaseSeven...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
-    phiPsiAngleVariationAtLoopPhaseSeven = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseSeven = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -605,7 +605,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     
-    phiPsiAngleVariationAtLoopPhaseEight = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseEight = 0.1;
     clashesCriterionPhaseEight = 2.35;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
@@ -658,7 +658,7 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseNine monteCarloOldStructurePhaseNine...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
-    phiPsiAngleVariationAtLoopPhaseNine = phiPsiAngleVariationAtLoop*0.4;
+    phiPsiAngleVariationAtLoopPhaseNine = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)

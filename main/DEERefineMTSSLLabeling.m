@@ -9,29 +9,31 @@ end
 
 
 function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1_20210523, residueIndex)
+    residueIndexString = strrep(formatedPDB(:, 7), ' ', '');
     proteinCoordinates = double(formatedPDB(:, 9:11));
-    targetCAlphaCoordinates = double(formatedPDB(formatedPDB(:, 3) == " CA " & double(formatedPDB(:, 7)) == residueIndex, 9:11));
+    targetCAlphaCoordinates = double(formatedPDB(formatedPDB(:, 3) == " CA " & residueIndexString == string(residueIndex), 9:11));
     proteinCoordinatesFirstMoved = proteinCoordinates-targetCAlphaCoordinates;
-    targetCCoordinatesFirstMoved = proteinCoordinatesFirstMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & double(formatedPDB(:, 7)) == residueIndex, 2)), :);
+    targetCCoordinatesFirstMoved = proteinCoordinatesFirstMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & residueIndexString == string(residueIndex), 2)), :);
     vectorCAlphaCFirstMoved = targetCCoordinatesFirstMoved;
     crossCAlphaCZFirstMoved = cross(vectorCAlphaCFirstMoved, [0 0 1]);
     angleCAlphaCZFirstMoved = acos(dot(vectorCAlphaCFirstMoved, [0 0 1])/norm(vectorCAlphaCFirstMoved)/norm([0 0 1]));
     proteinCoordinatesSecondMoved = proteinCoordinatesFirstMoved*rotatingMatrixGenerator(crossCAlphaCZFirstMoved, angleCAlphaCZFirstMoved);
-    targetNCoordinatesSecondMoved = proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & double(formatedPDB(:, 7)) == residueIndex, 2)), :);
+    targetNCoordinatesSecondMoved = proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & residueIndexString == string(residueIndex), 2)), :);
     vectorCAlphaNSecondMoved = targetNCoordinatesSecondMoved;
     projectedVectorCAlphaNSecondMoved = [vectorCAlphaNSecondMoved(1:2) 0];
-    rotatingSignSecondMoved = sign(dot(cross(projectedVectorCAlphaNSecondMoved, [1 0 0]), proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & double(formatedPDB(:, 7)) == residueIndex, 2)), :)));
+    rotatingSignSecondMoved = sign(dot(cross(projectedVectorCAlphaNSecondMoved, [1 0 0]), proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & residueIndexString == string(residueIndex), 2)), :)));
     angleCAlphaNXSecondMoved = acos(dot(projectedVectorCAlphaNSecondMoved, [1 0 0])/norm(projectedVectorCAlphaNSecondMoved)/norm([1 0 0]));
-    proteinCoordinatesThirdMoved = proteinCoordinatesSecondMoved*rotatingMatrixGenerator(proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & double(formatedPDB(:, 7)) == residueIndex, 2)), :), rotatingSignSecondMoved.*angleCAlphaNXSecondMoved);
+    proteinCoordinatesThirdMoved = proteinCoordinatesSecondMoved*rotatingMatrixGenerator(proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & residueIndexString == string(residueIndex), 2)), :), rotatingSignSecondMoved.*angleCAlphaNXSecondMoved);
     rotatedFormatedPDB = formatedPDB;
     rotatedFormatedPDB(:, 9:11) = string(proteinCoordinatesThirdMoved);
+    rotatedResidueIndexString = strrep(rotatedFormatedPDB(:, 7), ' ', '');
     
     R1LibraryCoordinates = reshape(pagetranspose(double(R1_20210523(:, 7:9, :))), 3, [])';
     maxMinX = [max(R1LibraryCoordinates(:,1))+1 min(R1LibraryCoordinates(:,1))-1];
     maxMinY = [max(R1LibraryCoordinates(:,2))+1 min(R1LibraryCoordinates(:,2))-1];
     maxMinZ = [max(R1LibraryCoordinates(:,3))+1 min(R1LibraryCoordinates(:,3))-1];
     newProteinCoordinates = double(rotatedFormatedPDB(:, 9:11));
-    allAtomIndex = double(rotatedFormatedPDB(double(rotatedFormatedPDB(:, 7)) == residueIndex, 2));
+    allAtomIndex = double(rotatedFormatedPDB(rotatedResidueIndexString == string(residueIndex), 2));
     clashedCandidatesAtomIndex = setdiff(double(rotatedFormatedPDB((newProteinCoordinates(:, 1) <= maxMinX(1) &...
                                                                   newProteinCoordinates(:, 1) >= maxMinX(2) &...
                                                                   newProteinCoordinates(:, 2) <= maxMinY(1) &...
@@ -55,7 +57,7 @@ function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1_20210523,
     availableR1Coordinates = double(R1_20210523(:, 7:9, availableR1Index));
     reshapedAvailableR1Coordinates = reshape(pagetranspose(availableR1Coordinates), 3, [])';
     
-    R1FirstMoved = reshapedAvailableR1Coordinates*rotatingMatrixGenerator(proteinCoordinatesThirdMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & double(formatedPDB(:, 7)) == residueIndex, 2)), :), -1*rotatingSignSecondMoved.*angleCAlphaNXSecondMoved);
+    R1FirstMoved = reshapedAvailableR1Coordinates*rotatingMatrixGenerator(proteinCoordinatesThirdMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & residueIndexString == string(residueIndex), 2)), :), -1*rotatingSignSecondMoved.*angleCAlphaNXSecondMoved);
     R1SecondMoved = R1FirstMoved*rotatingMatrixGenerator(crossCAlphaCZFirstMoved, -1*angleCAlphaCZFirstMoved);
     R1ThirdMoved = R1SecondMoved + targetCAlphaCoordinates;
     reshapedR1ThirdMoved = pagectranspose(reshape(R1ThirdMoved', 3, 18, []));

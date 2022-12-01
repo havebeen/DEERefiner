@@ -5,14 +5,20 @@ function oldSideChainInstalledFormatedStructure = oldSideChainInstaller(newForma
     newBackboneCoordinates = nan(4, 3, length(residueIndex));
     pagedNewFormatedBackbone = strings(4, 16, length(residueIndex));
     
-    for loopResidueIndex = 1:length(residueIndex)
-    oldSideChainCoordinates(1:length(oldFormatedStructure(double(oldFormatedStructure(:, 7))==(residueIndex(loopResidueIndex)), 1)), :, loopResidueIndex) = ...
-        double(oldFormatedStructure(double(oldFormatedStructure(:, 7)) == (residueIndex(loopResidueIndex)), 9:11));
-    oldFormatedSideChain(1:length(oldFormatedStructure(double(oldFormatedStructure(:, 7))==(residueIndex(loopResidueIndex)), 1)), :, loopResidueIndex) = ...
-        oldFormatedStructure(double(oldFormatedStructure(:, 7)) == (residueIndex(loopResidueIndex)), :);
+    residueIndexString = strrep(oldFormatedStructure(:, 7), ' ', '');
+    backboneResidueIndexString = strrep(oldFormatedStructure(oldFormatedStructure(:, 3)==" N  "|...
+                                   oldFormatedStructure(:, 3)==" CA "|...
+                                   oldFormatedStructure(:, 3)==" C  "|...
+                                   oldFormatedStructure(:, 3)==" O  ", 7), ' ', '');
     
-    newBackboneCoordinates(:, :, loopResidueIndex) = double(newFormatedBackbone(double(newFormatedBackbone(:, 7)) == residueIndex(loopResidueIndex), 9:11));
-    pagedNewFormatedBackbone(:, :, loopResidueIndex) = newFormatedBackbone(double(newFormatedBackbone(:, 7)) == residueIndex(loopResidueIndex), :);
+    for loopResidueIndex = 1:length(residueIndex)
+    oldSideChainCoordinates(1:length(oldFormatedStructure(residueIndexString==string(residueIndex(loopResidueIndex)), 1)), :, loopResidueIndex) = ...
+        double(oldFormatedStructure(residueIndexString == string(residueIndex(loopResidueIndex)), 9:11));
+    oldFormatedSideChain(1:length(oldFormatedStructure(residueIndexString==string(residueIndex(loopResidueIndex)), 1)), :, loopResidueIndex) = ...
+        oldFormatedStructure(residueIndexString == string(residueIndex(loopResidueIndex)), :);
+    
+    newBackboneCoordinates(:, :, loopResidueIndex) = double(newFormatedBackbone(backboneResidueIndexString == string(residueIndex(loopResidueIndex)), 9:11));
+    pagedNewFormatedBackbone(:, :, loopResidueIndex) = newFormatedBackbone(backboneResidueIndexString == string(residueIndex(loopResidueIndex)), :);
     end
     
     newFormatedBackboneTargetCACoordinates = pagetranspose(reshape(double(newFormatedBackbone(newFormatedBackbone(:, 3) == " CA ", 9:11))', 3, 1, []));

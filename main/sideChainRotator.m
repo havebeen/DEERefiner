@@ -7,10 +7,10 @@ function sideChainRotatedFormatedStructure = sideChainRotator(formatedStructure,
     sideChainThirdRotation = strings(14, 16, length(residueIndex));
     sideChainFourthRotation = strings(14, 16, length(residueIndex));
     sideChainFifthRotation = strings(14, 16, length(residueIndex));
-    
+    residueIndexString = strrep(formatedStructure(:, 7), ' ', '');
     for i = 1:length(residueIndex)
-        sideChainMatrix(1:length(formatedStructure(double(formatedStructure(:, 7)) == (residueIndex(i)), 1)), :, i) = ...
-            (formatedStructure(double(formatedStructure(:, 7)) == (residueIndex(i)), :));
+        sideChainMatrix(1:length(formatedStructure(residueIndexString == string(residueIndex(i)), 1)), :, i) = ...
+            (formatedStructure(residueIndexString == string(residueIndex(i)), :));
         if sum(residueIndex(i)==rotatingResidueIndex) > 0
             sideChainFirstRotation(:, :, i) = sideChainFirstBondRotator(sideChainMatrix(:, :, i), rotatingAngle);
             sideChainSecondRotation(:, :, i) = sideChainSecondBondRotator(sideChainFirstRotation(:, :, i), rotatingAngle);

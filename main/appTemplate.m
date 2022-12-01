@@ -1,10 +1,12 @@
-
+R1LibraryMatFileName = 'R1_library_20210523.mat';
+load(R1LibraryMatFileName);
 DEERefineSturctureFileName = "DEERefineSturcture.mat";
 load(DEERefineSturctureFileName);
 structureIndexEnd = structureIndexEachScript;
 for structureIndex = 1:structureIndexEnd
     clearvars -except structureIndex simulationIndex structureIndexEnd app ...
-                      runFileName RMSE maximalClashes monteCarloIteration initialStructureFullPath phiPsiAngle flexiblePhiPsiIndex targetNumberStructure 
+                      runFileName RMSE maximalClashes monteCarloIteration initialStructureFullPath phiPsiAngle flexiblePhiPsiIndex targetNumberStructure...
+                      R1LibraryMatFileName R1_20210523
                   
     DEERefineSturctureFileName = "DEERefineSturcture.mat";
     load(DEERefineSturctureFileName);
@@ -48,7 +50,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     for MTSSLLabelingIndex = 1:length(residue1List)
-        [initialSimulatedDistanceDistributionY(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(initialMutatedFormatedPDB, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
+        [initialSimulatedDistanceDistributionY(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(initialMutatedFormatedPDB, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
     end
     
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
@@ -98,7 +100,7 @@ for structureIndex = 1:structureIndexEnd
         newCandidateConteactedResidueIndex = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructure, 2.351);
         
         for labelingIndex = 1:length(residue1List)
-            [newCandidateSimulatedDistanceDistributionY(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructure, residue1List(labelingIndex), residue2List(labelingIndex));
+            [newCandidateSimulatedDistanceDistributionY(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructure, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
         end
         [~, newCandidateDEERMaximalIndex] = max(newCandidateSimulatedDistanceDistributionY);
         monteCarloNewDistanceDistribution = newCandidateDEERMaximalIndex;
@@ -141,7 +143,8 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         monteCarloOldGeometryPhaseTwo monteCarloOldStructurePhaseTwo...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
         
     
     phiPsiAngleVariationAtLoopPhaseTwo = 0.1;
@@ -195,12 +198,13 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseThree monteCarloOldStructurePhaseThree...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
     phiPsiAngleVariationAtLoopPhaseThree = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
-        [initialSimulatedDistanceDistributionYPhaseThree(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseThree, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
+        [initialSimulatedDistanceDistributionYPhaseThree(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseThree, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
     end
     
     normalizedInitialSimulatedDistanceDistributionYPhaseThree = initialSimulatedDistanceDistributionYPhaseThree./sum(initialSimulatedDistanceDistributionYPhaseThree);
@@ -242,7 +246,7 @@ for structureIndex = 1:structureIndexEnd
         newCandidateConteactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseThree, 2.351);
         
         for labelingIndex = 1:length(residue1List)
-            [newCandidateSimulatedDistanceDistributionYPhaseThree(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseThree, residue1List(labelingIndex), residue2List(labelingIndex));
+            [newCandidateSimulatedDistanceDistributionYPhaseThree(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseThree, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
         end
         
         [~, newCandidateDEERMaximalIndexPhaseThree] = max(newCandidateSimulatedDistanceDistributionYPhaseThree);
@@ -287,7 +291,8 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseFour monteCarloOldStructurePhaseFour...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
          
     
     
@@ -348,12 +353,13 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseFive monteCarloOldStructurePhaseFive...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
     phiPsiAngleVariationAtLoopPhaseFive = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
-        [initialSimulatedDistanceDistributionYPhaseFive(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseFive, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
+        [initialSimulatedDistanceDistributionYPhaseFive(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseFive, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
     end
     
     normalizedInitialSimulatedDistanceDistributionYPhaseFive = initialSimulatedDistanceDistributionYPhaseFive./sum(initialSimulatedDistanceDistributionYPhaseFive);
@@ -396,7 +402,7 @@ for structureIndex = 1:structureIndexEnd
         newCandidateConteactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseFive, 2.351);
         
         for labelingIndex = 1:length(residue1List)
-            [newCandidateSimulatedDistanceDistributionYPhaseFive(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseFive, residue1List(labelingIndex), residue2List(labelingIndex));
+            [newCandidateSimulatedDistanceDistributionYPhaseFive(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseFive, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
         end
         
         [~, newCandidateDEERMaximalIndexPhaseFive] = max(newCandidateSimulatedDistanceDistributionYPhaseFive);
@@ -445,7 +451,8 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseSix monteCarloOldStructurePhaseSix...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
     
     
     
@@ -506,12 +513,13 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseSeven monteCarloOldStructurePhaseSeven...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
     phiPsiAngleVariationAtLoopPhaseSeven = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
-        [initialSimulatedDistanceDistributionYPhaseSeven(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseSeven, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
+        [initialSimulatedDistanceDistributionYPhaseSeven(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseSeven, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
     end
     
     normalizedInitialSimulatedDistanceDistributionYPhaseSeven = initialSimulatedDistanceDistributionYPhaseSeven./sum(initialSimulatedDistanceDistributionYPhaseSeven);
@@ -554,7 +562,7 @@ for structureIndex = 1:structureIndexEnd
         newCandidateConteactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseSeven, 2.351);
         
         for labelingIndex = 1:length(residue1List)
-            [newCandidateSimulatedDistanceDistributionYPhaseSeven(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseSeven, residue1List(labelingIndex), residue2List(labelingIndex));
+            [newCandidateSimulatedDistanceDistributionYPhaseSeven(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseSeven, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
         end
         
         [~, newCandidateDEERMaximalIndexPhaseSeven] = max(newCandidateSimulatedDistanceDistributionYPhaseSeven);
@@ -600,7 +608,8 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseEight monteCarloOldStructurePhaseEight...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
     
     
     
@@ -657,12 +666,13 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseNine monteCarloOldStructurePhaseNine...
-        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath
+        maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
+                      R1LibraryMatFileName R1_20210523
     phiPsiAngleVariationAtLoopPhaseNine = 0.1;
     outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
-        [initialSimulatedDistanceDistributionYPhaseNine(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseNine, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex));
+        [initialSimulatedDistanceDistributionYPhaseNine(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseNine, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
     end
     
     normalizedInitialSimulatedDistanceDistributionYPhaseNine = initialSimulatedDistanceDistributionYPhaseNine./sum(initialSimulatedDistanceDistributionYPhaseNine);
@@ -705,7 +715,7 @@ for structureIndex = 1:structureIndexEnd
         newCandidateConteactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseNine, 2.351);
         
         for labelingIndex = 1:length(residue1List)
-            [newCandidateSimulatedDistanceDistributionYPhaseNine(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseNine, residue1List(labelingIndex), residue2List(labelingIndex));
+            [newCandidateSimulatedDistanceDistributionYPhaseNine(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseNine, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
         end
         
         [~, newCandidateDEERMaximalIndexPhaseNine] = max(newCandidateSimulatedDistanceDistributionYPhaseNine);

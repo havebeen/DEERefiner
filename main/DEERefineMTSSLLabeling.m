@@ -1,14 +1,14 @@
-function [simulatedDistanceDistributionY, simulatedDistanceDistributionX] = DEERefineMTSSLLabeling(formatedPDB, residue1, residue2)
-    R1LibraryMatFileName = 'R1_library_20210523.mat';
-    [~, formatedR1AtResidue1] = R1_searching(formatedPDB, R1LibraryMatFileName, residue1);
-    [~, formatedR1AtResidue2] = R1_searching(formatedPDB, R1LibraryMatFileName, residue2);
+function [simulatedDistanceDistributionY, simulatedDistanceDistributionX] = DEERefineMTSSLLabeling(formatedPDB, residue1, residue2, R1_20210523)
+
+    [~, formatedR1AtResidue1] = R1_searching(formatedPDB, R1_20210523, residue1);
+    [~, formatedR1AtResidue2] = R1_searching(formatedPDB, R1_20210523, residue2);
     [simulatedDistanceDistributionY, simulatedDistanceDistributionX] = histogramCalculator(formatedR1AtResidue1, formatedR1AtResidue2);
     
 end
 
 
 
-function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1LibraryMatFileName, residueIndex)
+function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1_20210523, residueIndex)
     proteinCoordinates = double(formatedPDB(:, 9:11));
     targetCAlphaCoordinates = double(formatedPDB(formatedPDB(:, 3) == " CA " & double(formatedPDB(:, 7)) == residueIndex, 9:11));
     proteinCoordinatesFirstMoved = proteinCoordinates-targetCAlphaCoordinates;
@@ -25,7 +25,7 @@ function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1LibraryMat
     proteinCoordinatesThirdMoved = proteinCoordinatesSecondMoved*rotatingMatrixGenerator(proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & double(formatedPDB(:, 7)) == residueIndex, 2)), :), rotatingSignSecondMoved.*angleCAlphaNXSecondMoved);
     rotatedFormatedPDB = formatedPDB;
     rotatedFormatedPDB(:, 9:11) = string(proteinCoordinatesThirdMoved);
-    load(R1LibraryMatFileName);
+    
     R1LibraryCoordinates = reshape(pagetranspose(double(R1_20210523(:, 7:9, :))), 3, [])';
     maxMinX = [max(R1LibraryCoordinates(:,1))+1 min(R1LibraryCoordinates(:,1))-1];
     maxMinY = [max(R1LibraryCoordinates(:,2))+1 min(R1LibraryCoordinates(:,2))-1];

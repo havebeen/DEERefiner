@@ -53,7 +53,7 @@ function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1_20210523,
     clashedR1Candidates = reshapedPairDistanceBetweenClashedCandidatesAndR1Library(:, 7:R1Length, :);
     minimalR1Distance = reshape(min(min(clashedR1Candidates)), R1Number, 1);
     [lessConstraintR1Value200, lessConstraintR1Index200] = maxk(minimalR1Distance, 200);
-    availableR1Index = lessConstraintR1Index200(lessConstraintR1Value200>2.0);
+    availableR1Index = lessConstraintR1Index200(lessConstraintR1Value200>1.7);
     availableR1Coordinates = double(R1_20210523(:, 7:9, availableR1Index));
     reshapedAvailableR1Coordinates = reshape(pagetranspose(availableR1Coordinates), 3, [])';
     

@@ -13,7 +13,8 @@ MATLAB R2021a on macOS Monterey
 ## Prerequisites
 
 1. MATLAB R2021a or later
-2. MATLAB Parallel Computing Toolbox (accelerate drastically)
+2. MATLAB Parallel Computing Toolbox
+3. MATLAB Image Processing Toolbox
 
 ## Installation
 1. Clone the repository (or download the whole folder)

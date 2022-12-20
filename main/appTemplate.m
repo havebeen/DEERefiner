@@ -3,16 +3,19 @@ load(R1LibraryMatFileName);
 DEERefineSturctureFileName = "DEERefineSturcture.mat";
 load(DEERefineSturctureFileName);
 structureIndexEnd = structureIndexEachScript;
+
 for structureIndex = 1:structureIndexEnd
     clearvars -except structureIndex simulationIndex structureIndexEnd app ...
                       runFileName RMSE maximalClashes monteCarloIteration initialStructureFullPath phiPsiAngle flexiblePhiPsiIndex targetNumberStructure...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution
                   
     DEERefineSturctureFileName = "DEERefineSturcture.mat";
     load(DEERefineSturctureFileName);
     rng('shuffle')
     timeStamp = char(erase(runFileName(1),"runFile_"));
     timeStamp(end-1:end) = [];
+    currentRunFileName = string(mfilename);
+    simulationIndex = erase(currentRunFileName, strcat("runFile_", timeStamp, "_"));
     currentStatusFileName = strcat("currentStatus_", timeStamp, ".dat");
     advancedPrFileName = strcat(timeStamp, '_advanced_Pr.dat');
     firstRMSEPassedNumberFileName = strcat(timeStamp, '_first_RMSE_passed_number.dat');
@@ -53,7 +56,7 @@ for structureIndex = 1:structureIndexEnd
         [initialSimulatedDistanceDistributionY(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(initialMutatedFormatedPDB, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
     end
     
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
+    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(simulationIndex), '_', num2str(structureIndex), '.pdb');
     
     normalizedInitialSimulatedDistanceDistributionY = initialSimulatedDistanceDistributionY./sum(initialSimulatedDistanceDistributionY);
     
@@ -67,7 +70,7 @@ for structureIndex = 1:structureIndexEnd
     
     iterationIndexFirstPhase(1) = 1;
     
-%     outputTrajectoryDatFileName = strcat(timeStamp, '_Trajectory_', num2str(simulationIndex), '_', num2str(structureIndex), '.dat');
+    outputTrajectoryDatFileName = strcat(timeStamp, '_Trajectory_', num2str(simulationIndex), '_', num2str(structureIndex), '.dat');
     
     phiPsiAngleVariationAtLoop = phiPsiAngle;
     
@@ -109,7 +112,8 @@ for structureIndex = 1:structureIndexEnd
         [clashesIfMovingCriterion, clashedResidueNumber(monteCarloSteps+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndex), length(newCandidateConteactedResidueIndex), 0, monteCarloClashesTemperature);
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 2)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, 1, monteCarloSteps); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, PDBEvolution)
+            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1))
             monteCarloOldContactedResidueIndex = newCandidateConteactedResidueIndex;
             monteCarloOldStructure = newCandidateFormatedStructure;
             monteCarloOldDistanceDistribution = monteCarloNewDistanceDistribution;
@@ -144,12 +148,13 @@ for structureIndex = 1:structureIndexEnd
         sideChainRotatorResidueIndex minimalBackboneNonBondedDistance...
         monteCarloOldGeometryPhaseTwo monteCarloOldStructurePhaseTwo...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
         
     
     phiPsiAngleVariationAtLoopPhaseTwo = 0.1;
     clashesCriterionPhaseTwo = 2.3;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
+    
     
     monteCarloOldContactedResidueIndexPhaseTwo = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseTwo, clashesCriterionPhaseTwo);
     clashedResidueNumberPhaseTwo(1) = length(monteCarloOldContactedResidueIndexPhaseTwo);
@@ -174,7 +179,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseTwo = newCandidateConteactedResidueIndexPhaseTwo;
             monteCarloOldStructurePhaseTwo = newCandidateFormatedStructurePhaseTwo;
             monteCarloOldGeometryPhaseTwo = monteCarloNewCandidateGeometryPhaseTwo;
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, 1, phaseTwoSteps); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, PDBEvolution)
             if clashedResidueNumberPhaseTwo(phaseTwoSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 5)
                 monteCarloOldGeometryPhaseThree = monteCarloNewCandidateGeometryPhaseTwo;
@@ -199,9 +204,9 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseThree monteCarloOldStructurePhaseThree...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
     phiPsiAngleVariationAtLoopPhaseThree = 0.1;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseThree(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseThree, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -257,7 +262,8 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 7)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, 1, monteCarloStepsPhaseThree); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, PDBEvolution)
+            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
             monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
             monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseThree;
             monteCarloOldDistanceDistributionPhaseThree = monteCarloNewDistanceDistributionPhaseThree;
@@ -292,7 +298,8 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseFour monteCarloOldStructurePhaseFour...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
          
     
     
@@ -300,7 +307,6 @@ for structureIndex = 1:structureIndexEnd
     
     phiPsiAngleVariationAtLoopPhaseFour = 0.1;
     clashesCriterionPhaseFour = 2.32;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFour, clashesCriterionPhaseFour);
     clashedResidueNumberPhaseFour(1) = length(monteCarloOldContactedResidueIndexPhaseFour);
@@ -326,7 +332,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseFour = newCandidateConteactedResidueIndexPhaseFour;
             monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
             monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, 1, phaseFourSteps); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
             if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 10)
                 monteCarloOldGeometryPhaseFive = monteCarloNewCandidateGeometryPhaseFour;
@@ -354,9 +360,9 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseFive monteCarloOldStructurePhaseFive...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
     phiPsiAngleVariationAtLoopPhaseFive = 0.1;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseFive(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseFive, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -413,7 +419,8 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 12)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, 1, monteCarloStepsPhaseFive); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
+            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
             monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
             monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFive;
             monteCarloOldDistanceDistributionPhaseFive = monteCarloNewDistanceDistributionPhaseFive;
@@ -452,14 +459,14 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseSix monteCarloOldStructurePhaseSix...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
     
     
     
     
     phiPsiAngleVariationAtLoopPhaseSix = 0.1;
     clashesCriterionPhaseSix = 2.34;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSix, clashesCriterionPhaseSix);
     clashedResidueNumberPhaseSix(1) = length(monteCarloOldContactedResidueIndexPhaseSix);
@@ -484,7 +491,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseSix = newCandidateConteactedResidueIndexPhaseSix;
             monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
             monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, 1, phaseSixSteps); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
             if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 15)
                 monteCarloOldGeometryPhaseSeven = monteCarloNewCandidateGeometryPhaseSix;
@@ -514,9 +521,9 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseSeven monteCarloOldStructurePhaseSeven...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
     phiPsiAngleVariationAtLoopPhaseSeven = 0.1;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseSeven(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseSeven, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -573,7 +580,8 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 17)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, 1, monteCarloStepsPhaseSeven); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
+            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
             monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
             monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSeven;
             monteCarloOldDistanceDistributionPhaseSeven = monteCarloNewDistanceDistributionPhaseSeven;
@@ -609,14 +617,14 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseEight monteCarloOldStructurePhaseEight...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
     
     
     
     
     phiPsiAngleVariationAtLoopPhaseEight = 0.1;
     clashesCriterionPhaseEight = 2.35;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     monteCarloOldContactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseEight, clashesCriterionPhaseEight);
     clashedResidueNumberPhaseEight(1) = length(monteCarloOldContactedResidueIndexPhaseEight);
@@ -641,7 +649,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldContactedResidueIndexPhaseEight = newCandidateConteactedResidueIndexPhaseEight;
             monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
             monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, 1, phaseEightSteps); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
             if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 20)
                 monteCarloOldGeometryPhaseNine = monteCarloNewCandidateGeometryPhaseEight;
@@ -667,9 +675,9 @@ for structureIndex = 1:structureIndexEnd
         phiPsiAngleVariationAtLoop flexibleRegionIndex...
         monteCarloOldGeometryPhaseNine monteCarloOldStructurePhaseNine...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
-                      R1LibraryMatFileName R1_20210523
+                      R1LibraryMatFileName R1_20210523 PDBEvolution...
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
     phiPsiAngleVariationAtLoopPhaseNine = 0.1;
-    outputTrajectoryPDBFileName = strcat(timeStamp, '_Trajectory_', num2str(1), '_', num2str(structureIndex), '.pdb');
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseNine(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseNine, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -726,7 +734,8 @@ for structureIndex = 1:structureIndexEnd
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 22)
-%             pdbSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, 1, monteCarloStepsPhaseNine); % save for test
+            PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
+            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
             monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
             monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseNine;
             monteCarloOldDistanceDistributionPhaseNine = monteCarloNewDistanceDistributionPhaseNine;

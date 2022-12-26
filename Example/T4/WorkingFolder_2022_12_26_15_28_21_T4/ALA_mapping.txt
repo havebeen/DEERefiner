@@ -1,0 +1,8 @@
+#resname
+ALA
+#mapping
+N	N
+CA	CA
+CB	SC1
+C	C
+O	O

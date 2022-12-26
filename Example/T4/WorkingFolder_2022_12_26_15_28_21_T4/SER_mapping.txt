@@ -1,0 +1,9 @@
+#resname
+SER
+#mapping
+N	N
+CA	CA
+C	C
+O	O
+CB	SC1
+OG	SC1

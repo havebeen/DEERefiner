@@ -1,0 +1,11 @@
+#resname
+ASN
+#mapping
+N	N
+CA	CA
+C	C
+O	O
+CB	SC1
+CG	SC1
+OD1	SC1
+ND2	SC1

@@ -7,7 +7,7 @@ structureIndexEnd = structureIndexEachScript;
 for structureIndex = 1:structureIndexEnd
     clearvars -except structureIndex simulationIndex structureIndexEnd app ...
                       runFileName RMSE maximalClashes monteCarloIteration initialStructureFullPath phiPsiAngle flexiblePhiPsiIndex targetNumberStructure...
-                      R1LibraryMatFileName R1_20210523 PDBEvolution
+                      R1LibraryMatFileName R1_20210523 PDBEvolution monteCarloTemperature
                   
     DEERefineSturctureFileName = "DEERefineSturcture.mat";
     load(DEERefineSturctureFileName);
@@ -108,7 +108,7 @@ for structureIndex = 1:structureIndexEnd
         [~, newCandidateDEERMaximalIndex] = max(newCandidateSimulatedDistanceDistributionY);
         monteCarloNewDistanceDistribution = newCandidateDEERMaximalIndex;
         monteCarloClashesTemperature = 3;
-        [DEERIfMovingCriterion, RMSEFirstPhase(monteCarloSteps+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistribution, monteCarloNewDistanceDistribution, targetDEERMaximalIndex, 0.05);
+        [DEERIfMovingCriterion, RMSEFirstPhase(monteCarloSteps+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistribution, monteCarloNewDistanceDistribution, targetDEERMaximalIndex, monteCarloTemperature);
         [clashesIfMovingCriterion, clashedResidueNumber(monteCarloSteps+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndex), length(newCandidateConteactedResidueIndex), 0, monteCarloClashesTemperature);
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 2)
@@ -149,7 +149,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseTwo monteCarloOldStructurePhaseTwo...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
         
     
     phiPsiAngleVariationAtLoopPhaseTwo = 0.1;
@@ -205,7 +205,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseThree monteCarloOldStructurePhaseThree...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
     phiPsiAngleVariationAtLoopPhaseThree = 0.1;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -257,7 +257,7 @@ for structureIndex = 1:structureIndexEnd
         [~, newCandidateDEERMaximalIndexPhaseThree] = max(newCandidateSimulatedDistanceDistributionYPhaseThree);
         monteCarloNewDistanceDistributionPhaseThree = newCandidateDEERMaximalIndexPhaseThree;
         monteCarloClashesTemperaturePhaseThree = 1;
-        [DEERIfMovingCriterion, RMSEThirdPhase(monteCarloStepsPhaseThree+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseThree, monteCarloNewDistanceDistributionPhaseThree, targetDEERMaximalIndex, 0.05);
+        [DEERIfMovingCriterion, RMSEThirdPhase(monteCarloStepsPhaseThree+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseThree, monteCarloNewDistanceDistributionPhaseThree, targetDEERMaximalIndex, monteCarloTemperature);
         [clashesIfMovingCriterion, clashedResidueNumberThirdPhase(monteCarloStepsPhaseThree+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndexPhaseThree), length(newCandidateConteactedResidueIndexPhaseThree), 0, monteCarloClashesTemperaturePhaseThree);
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
@@ -299,7 +299,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseFour monteCarloOldStructurePhaseFour...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
          
     
     
@@ -361,7 +361,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseFive monteCarloOldStructurePhaseFive...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
     phiPsiAngleVariationAtLoopPhaseFive = 0.1;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -414,7 +414,7 @@ for structureIndex = 1:structureIndexEnd
         [~, newCandidateDEERMaximalIndexPhaseFive] = max(newCandidateSimulatedDistanceDistributionYPhaseFive);
         monteCarloNewDistanceDistributionPhaseFive = newCandidateDEERMaximalIndexPhaseFive;
         monteCarloClashesTemperaturePhaseFive = 1;
-        [DEERIfMovingCriterion, RMSEFifthPhase(monteCarloStepsPhaseFive+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseFive, monteCarloNewDistanceDistributionPhaseFive, targetDEERMaximalIndex, 0.05);
+        [DEERIfMovingCriterion, RMSEFifthPhase(monteCarloStepsPhaseFive+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseFive, monteCarloNewDistanceDistributionPhaseFive, targetDEERMaximalIndex, monteCarloTemperature);
         [clashesIfMovingCriterion, clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndexPhaseFive), length(newCandidateConteactedResidueIndexPhaseFive), 0, monteCarloClashesTemperaturePhaseFive);
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
@@ -460,7 +460,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseSix monteCarloOldStructurePhaseSix...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
     
     
     
@@ -522,7 +522,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseSeven monteCarloOldStructurePhaseSeven...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
     phiPsiAngleVariationAtLoopPhaseSeven = 0.1;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -575,7 +575,7 @@ for structureIndex = 1:structureIndexEnd
         [~, newCandidateDEERMaximalIndexPhaseSeven] = max(newCandidateSimulatedDistanceDistributionYPhaseSeven);
         monteCarloNewDistanceDistributionPhaseSeven = newCandidateDEERMaximalIndexPhaseSeven;
         monteCarloClashesTemperaturePhaseSeven = 1;
-        [DEERIfMovingCriterion, RMSESeventhPhase(monteCarloStepsPhaseSeven+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseSeven, monteCarloNewDistanceDistributionPhaseSeven, targetDEERMaximalIndex, 0.05);
+        [DEERIfMovingCriterion, RMSESeventhPhase(monteCarloStepsPhaseSeven+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseSeven, monteCarloNewDistanceDistributionPhaseSeven, targetDEERMaximalIndex, monteCarloTemperature);
         [clashesIfMovingCriterion, clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndexPhaseSeven), length(newCandidateConteactedResidueIndexPhaseSeven), 0, monteCarloClashesTemperaturePhaseSeven);
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
@@ -618,7 +618,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseEight monteCarloOldStructurePhaseEight...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
     
     
     
@@ -676,7 +676,7 @@ for structureIndex = 1:structureIndexEnd
         monteCarloOldGeometryPhaseNine monteCarloOldStructurePhaseNine...
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
-                      outputTrajectoryPDBFileName outputTrajectoryDatFileName
+                      outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature
     phiPsiAngleVariationAtLoopPhaseNine = 0.1;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
@@ -729,7 +729,7 @@ for structureIndex = 1:structureIndexEnd
         [~, newCandidateDEERMaximalIndexPhaseNine] = max(newCandidateSimulatedDistanceDistributionYPhaseNine);
         monteCarloNewDistanceDistributionPhaseNine = newCandidateDEERMaximalIndexPhaseNine;
         monteCarloClashesTemperaturePhaseNine = 1;
-        [DEERIfMovingCriterion, RMSENinethPhase(monteCarloStepsPhaseNine+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseNine, monteCarloNewDistanceDistributionPhaseNine, targetDEERMaximalIndex, 0.05);
+        [DEERIfMovingCriterion, RMSENinethPhase(monteCarloStepsPhaseNine+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseNine, monteCarloNewDistanceDistributionPhaseNine, targetDEERMaximalIndex, monteCarloTemperature);
         [clashesIfMovingCriterion, clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndexPhaseNine), length(newCandidateConteactedResidueIndexPhaseNine), 0, monteCarloClashesTemperaturePhaseNine);
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1

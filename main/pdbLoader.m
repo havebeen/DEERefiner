@@ -51,6 +51,9 @@ end
 function finalFormatedPDBchar = XrayFinalCharGenerator(NMRCheckedFormatedPDBchar)
     targetPDBATOMPart = NMRCheckedFormatedPDBchar(all(NMRCheckedFormatedPDBchar(:, 1:4)=='ATOM', 2), :);
     finalFormatedPDBchar = targetPDBATOMPart(targetPDBATOMPart(:, 22) == 'A', :);
+    if isempty(finalFormatedPDBchar)
+        finalFormatedPDBchar = targetPDBATOMPart;
+    end
 end
 
 function formatedAtomPart = atomPartFormator(targetPDBFileChar)

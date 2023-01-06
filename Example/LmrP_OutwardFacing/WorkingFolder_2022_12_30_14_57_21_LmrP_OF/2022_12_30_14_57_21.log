@@ -1,0 +1,26 @@
+advanced_Pr file name	2022_12_30_14_57_21_advanced_Pr.dat
+advanced_Pr file 1	2022_12_30_14_57_21_12_210R1.dat
+advanced_Pr original file 1	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_12_210.dat
+advanced_Pr file 2	2022_12_30_14_57_21_38_310R1.dat
+advanced_Pr original file 2	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_38_310.dat
+advanced_Pr file 3	2022_12_30_14_57_21_38_371R1.dat
+advanced_Pr original file 3	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_38_371.dat
+advanced_Pr file 4	2022_12_30_14_57_21_70_338R1.dat
+advanced_Pr original file 4	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_70_338.dat
+advanced_Pr file 5	2022_12_30_14_57_21_103_371R1.dat
+advanced_Pr original file 5	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_103_371.dat
+advanced_Pr file 6	2022_12_30_14_57_21_125_210R1.dat
+advanced_Pr original file 6	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_125_210.dat
+advanced_Pr file 7	2022_12_30_14_57_21_125_278R1.dat
+advanced_Pr original file 7	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_125_278.dat
+advanced_Pr file 8	2022_12_30_14_57_21_160_310R1.dat
+advanced_Pr original file 8	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_160_310.dat
+advanced_Pr file 9	2022_12_30_14_57_21_160_371R1.dat
+advanced_Pr original file 9	/Users/te-yukao/Documents/2019_NTHU_2023/Work_Space/MC_based_structural_refinement/DEERefiner/Example/LmrP_OutwardFacing/LmrP_160_371.dat
+Flexbile regions	1:405
+phi/psi angle	0.700000
+MC iteration	40000
+MC temperature	0.050000
+RMSE	1.600000
+Maximal clashes	8
+Number of structures	20

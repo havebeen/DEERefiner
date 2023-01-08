@@ -158,7 +158,7 @@ for structureIndex = 1:structureIndexEnd
     
     monteCarloOldContactedResidueIndexPhaseTwo = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseTwo, clashesCriterionPhaseTwo);
     clashedResidueNumberPhaseTwo(1) = length(monteCarloOldContactedResidueIndexPhaseTwo);
-    for phaseTwoSteps = 1:30000
+    for phaseTwoSteps = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -229,7 +229,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldStructurePhaseThree = monteCarloOldStructurePhaseThree;
     monteCarloOldContactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseThree, 2.351);
     clashedResidueNumberPhaseThree(1) = length(monteCarloOldContactedResidueIndexPhaseThree);
-    for monteCarloStepsPhaseThree = 1:30000
+    for monteCarloStepsPhaseThree = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -310,7 +310,7 @@ for structureIndex = 1:structureIndexEnd
     
     monteCarloOldContactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFour, clashesCriterionPhaseFour);
     clashedResidueNumberPhaseFour(1) = length(monteCarloOldContactedResidueIndexPhaseFour);
-    for phaseFourSteps = 1:30000
+    for phaseFourSteps = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -386,7 +386,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldContactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFive, 2.351);
     clashedResidueNumberPhaseFive(1) = length(monteCarloOldContactedResidueIndexPhaseFive);
     
-    for monteCarloStepsPhaseFive = 1:30000
+    for monteCarloStepsPhaseFive = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -470,7 +470,7 @@ for structureIndex = 1:structureIndexEnd
     
     monteCarloOldContactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSix, clashesCriterionPhaseSix);
     clashedResidueNumberPhaseSix(1) = length(monteCarloOldContactedResidueIndexPhaseSix);
-    for phaseSixSteps = 1:30000
+    for phaseSixSteps = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -547,7 +547,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldContactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSeven, 2.351);
     clashedResidueNumberPhaseSeven(1) = length(monteCarloOldContactedResidueIndexPhaseSeven);
     
-    for monteCarloStepsPhaseSeven = 1:30000
+    for monteCarloStepsPhaseSeven = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -628,7 +628,7 @@ for structureIndex = 1:structureIndexEnd
     
     monteCarloOldContactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseEight, clashesCriterionPhaseEight);
     clashedResidueNumberPhaseEight(1) = length(monteCarloOldContactedResidueIndexPhaseEight);
-    for phaseEightSteps = 1:30000
+    for phaseEightSteps = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return
@@ -701,7 +701,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldContactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseNine, 2.351);
     clashedResidueNumberPhaseNine(1) = length(monteCarloOldContactedResidueIndexPhaseNine);
     
-    for monteCarloStepsPhaseNine = 1:30000
+    for monteCarloStepsPhaseNine = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
         if fifthRMSEPassedNumber >= numberOfStructure
             return

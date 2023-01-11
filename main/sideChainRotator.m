@@ -15,8 +15,8 @@ function sideChainRotatedFormatedStructure = sideChainRotator(formatedStructure,
             sideChainFirstRotation(:, :, i) = sideChainFirstBondRotator(sideChainMatrix(:, :, i), rotatingAngle);
             sideChainSecondRotation(:, :, i) = sideChainSecondBondRotator(sideChainFirstRotation(:, :, i), rotatingAngle);
             sideChainThirdRotation(:, :, i) = sideChainThirdBondRotator(sideChainSecondRotation(:, :, i), rotatingAngle);
-            sideChainFourthRotation(:, :, i) = sideChainFourthBondRotator(sideChainThirdRotation(:, :, i), rotatingAngle);
-            sideChainFifthRotation(:, :, i) = sideChainFifthBondRotator(sideChainFourthRotation(:, :, i), rotatingAngle);
+            sideChainFifthRotation(:, :, i) = sideChainFourthBondRotator(sideChainThirdRotation(:, :, i), rotatingAngle);
+%             sideChainFifthRotation(:, :, i) = sideChainFifthBondRotator(sideChainFourthRotation(:, :, i), rotatingAngle);
         else
             sideChainFifthRotation(:, :, i) = sideChainMatrix(:, :, i);
         end

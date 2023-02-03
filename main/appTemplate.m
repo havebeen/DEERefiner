@@ -113,7 +113,8 @@ for structureIndex = 1:structureIndexEnd
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 2)
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, PDBEvolution)
-            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1))
+%             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1))
+            datSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1), clashedResidueNumber(monteCarloSteps+1))
             monteCarloOldContactedResidueIndex = newCandidateConteactedResidueIndex;
             monteCarloOldStructure = newCandidateFormatedStructure;
             monteCarloOldDistanceDistribution = monteCarloNewDistanceDistribution;
@@ -180,6 +181,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseTwo = newCandidateFormatedStructurePhaseTwo;
             monteCarloOldGeometryPhaseTwo = monteCarloNewCandidateGeometryPhaseTwo;
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, PDBEvolution)
+            datSaver(outputTrajectoryDatFileName, phaseTwoSteps, 0, clashedResidueNumberPhaseTwo(phaseTwoSteps+1))
             if clashedResidueNumberPhaseTwo(phaseTwoSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 5)
                 monteCarloOldGeometryPhaseThree = monteCarloNewCandidateGeometryPhaseTwo;
@@ -263,7 +265,8 @@ for structureIndex = 1:structureIndexEnd
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 7)
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, PDBEvolution)
-            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
+%             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
+            datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1), clashedResidueNumberThirdPhase(monteCarloStepsPhaseThree+1))
             monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
             monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseThree;
             monteCarloOldDistanceDistributionPhaseThree = monteCarloNewDistanceDistributionPhaseThree;
@@ -333,6 +336,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
             monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
+            datSaver(outputTrajectoryDatFileName, phaseFourSteps, 0, clashedResidueNumberPhaseFour(phaseFourSteps+1))
             if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 10)
                 monteCarloOldGeometryPhaseFive = monteCarloNewCandidateGeometryPhaseFour;
@@ -420,7 +424,8 @@ for structureIndex = 1:structureIndexEnd
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 12)
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
+%             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
+            datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
             monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
             monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFive;
             monteCarloOldDistanceDistributionPhaseFive = monteCarloNewDistanceDistributionPhaseFive;
@@ -492,6 +497,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
             monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
+            datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
             if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 15)
                 monteCarloOldGeometryPhaseSeven = monteCarloNewCandidateGeometryPhaseSix;
@@ -581,7 +587,8 @@ for structureIndex = 1:structureIndexEnd
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 17)
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
+%             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
+            datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
             monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
             monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSeven;
             monteCarloOldDistanceDistributionPhaseSeven = monteCarloNewDistanceDistributionPhaseSeven;
@@ -650,6 +657,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
             monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
+            datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
             if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                 currentStatusUpdator(currentStatusFileName, 20)
                 monteCarloOldGeometryPhaseNine = monteCarloNewCandidateGeometryPhaseEight;
@@ -728,14 +736,15 @@ for structureIndex = 1:structureIndexEnd
         
         [~, newCandidateDEERMaximalIndexPhaseNine] = max(newCandidateSimulatedDistanceDistributionYPhaseNine);
         monteCarloNewDistanceDistributionPhaseNine = newCandidateDEERMaximalIndexPhaseNine;
-        monteCarloClashesTemperaturePhaseNine = 0.92;
+        monteCarloClashesTemperaturePhaseNine = 0.85;
         [DEERIfMovingCriterion, RMSENinethPhase(monteCarloStepsPhaseNine+1)] = monteCarloMetropolisCriterionGenerator(monteCarloOldDistanceDistributionPhaseNine, monteCarloNewDistanceDistributionPhaseNine, targetDEERMaximalIndex, monteCarloTemperature);
         [clashesIfMovingCriterion, clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1)] = monteCarloMetropolisCriterionGenerator(length(monteCarloOldContactedResidueIndexPhaseNine), length(newCandidateConteactedResidueIndexPhaseNine), 0, monteCarloClashesTemperaturePhaseNine);
         
         if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
             currentStatusUpdator(currentStatusFileName, 22)
             PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-            RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
+%             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
+            datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
             monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
             monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseNine;
             monteCarloOldDistanceDistributionPhaseNine = monteCarloNewDistanceDistributionPhaseNine;

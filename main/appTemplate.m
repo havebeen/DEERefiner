@@ -631,7 +631,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     phiPsiAngleVariationAtLoopPhaseEight = 0.1;
-    clashesCriterionPhaseEight = 2.35;
+    clashesCriterionPhaseEight = 2.355;
     
     monteCarloOldContactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseEight, clashesCriterionPhaseEight);
     clashedResidueNumberPhaseEight(1) = length(monteCarloOldContactedResidueIndexPhaseEight);

@@ -21,7 +21,7 @@ function [availableR1Index, formatedR1] = R1_searching(formatedPDB, R1_20210523,
     targetNCoordinatesSecondMoved = proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & residueIndexString == string(residueIndex), 2)), :);
     vectorCAlphaNSecondMoved = targetNCoordinatesSecondMoved;
     projectedVectorCAlphaNSecondMoved = [vectorCAlphaNSecondMoved(1:2) 0];
-    rotatingSignSecondMoved = sign(dot(cross(projectedVectorCAlphaNSecondMoved, [1 0 0]), proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & residueIndexString == string(residueIndex), 2)), :)));
+    rotatingSignSecondMoved = -1*sign(dot(cross(projectedVectorCAlphaNSecondMoved, [1 0 0]), proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " N  " & residueIndexString == string(residueIndex), 2)), :)));
     angleCAlphaNXSecondMoved = acos(dot(projectedVectorCAlphaNSecondMoved, [1 0 0])/norm(projectedVectorCAlphaNSecondMoved)/norm([1 0 0]));
     proteinCoordinatesThirdMoved = proteinCoordinatesSecondMoved*rotatingMatrixGenerator(proteinCoordinatesSecondMoved(formatedPDB(:, 2) == (formatedPDB(formatedPDB(:, 3) == " C  " & residueIndexString == string(residueIndex), 2)), :), rotatingSignSecondMoved.*angleCAlphaNXSecondMoved);
     rotatedFormatedPDB = formatedPDB;

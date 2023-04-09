@@ -153,7 +153,7 @@ for structureIndex = 1:structureIndexEnd
                       outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature monteCarloIterationNumber
         
     
-    phiPsiAngleVariationAtLoopPhaseTwo = 0.1;
+    phiPsiAngleVariationAtLoopPhaseTwo = 0.05;
     clashesCriterionPhaseTwo = 2.3;
     
     
@@ -171,6 +171,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseTwo] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseTwo, 'scaling', false);
         currentCandidateFormatedBackbonePhaseTwo = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseTwo(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseTwo);
+        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseTwo);
+        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+            continue
+        end
         currentCandidateFormatedStructurePhaseTwo = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseTwo, monteCarloOldStructurePhaseTwo);
         newCandidateFormatedStructurePhaseTwo = sideChainRotator(currentCandidateFormatedStructurePhaseTwo, 25, monteCarloOldContactedResidueIndexPhaseTwo);
         newCandidateConteactedResidueIndexPhaseTwo = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseTwo, clashesCriterionPhaseTwo);
@@ -208,7 +212,7 @@ for structureIndex = 1:structureIndexEnd
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
                       outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature monteCarloIterationNumber
-    phiPsiAngleVariationAtLoopPhaseThree = 0.1;
+    phiPsiAngleVariationAtLoopPhaseThree = 0.05;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseThree(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseThree, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -249,7 +253,8 @@ for structureIndex = 1:structureIndexEnd
             continue
         end
         currentCandidateFormatedStructurePhaseThree = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseThree, monteCarloOldStructurePhaseThree);
-        newCandidateFormatedStructurePhaseThree = sideChainRotator(currentCandidateFormatedStructurePhaseThree, 5, sideChainRotatorResidueIndex);
+        newCandidateFormatedStructurePhaseThree_1 = sideChainRotator(currentCandidateFormatedStructurePhaseThree, 25, monteCarloOldContactedResidueIndexPhaseThree);
+        newCandidateFormatedStructurePhaseThree = sideChainRotator(newCandidateFormatedStructurePhaseThree_1, 5, sideChainRotatorResidueIndex);
         newCandidateConteactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseThree, 2.351);
         
         for labelingIndex = 1:length(residue1List)
@@ -308,7 +313,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     
-    phiPsiAngleVariationAtLoopPhaseFour = 0.1;
+    phiPsiAngleVariationAtLoopPhaseFour = 0.05;
     clashesCriterionPhaseFour = 2.32;
     
     monteCarloOldContactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFour, clashesCriterionPhaseFour);
@@ -325,6 +330,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseFour] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseFour, 'scaling', false);
         currentCandidateFormatedBackbonePhaseFour = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseFour(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseFour);
+        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseFour);
+        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+            continue
+        end
         currentCandidateFormatedStructurePhaseFour = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseFour, monteCarloOldStructurePhaseFour);
         newCandidateFormatedStructurePhaseFour = sideChainRotator(currentCandidateFormatedStructurePhaseFour, 25, monteCarloOldContactedResidueIndexPhaseFour);
         newCandidateConteactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseFour, clashesCriterionPhaseFour);
@@ -366,7 +375,7 @@ for structureIndex = 1:structureIndexEnd
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
                       outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature monteCarloIterationNumber
-    phiPsiAngleVariationAtLoopPhaseFive = 0.1;
+    phiPsiAngleVariationAtLoopPhaseFive = 0.05;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseFive(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseFive, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -408,7 +417,8 @@ for structureIndex = 1:structureIndexEnd
             continue
         end
         currentCandidateFormatedStructurePhaseFive = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseFive, monteCarloOldStructurePhaseFive);
-        newCandidateFormatedStructurePhaseFive = sideChainRotator(currentCandidateFormatedStructurePhaseFive, 5, sideChainRotatorResidueIndex);
+        newCandidateFormatedStructurePhaseFive_1 = sideChainRotator(currentCandidateFormatedStructurePhaseFive, 25, monteCarloOldContactedResidueIndexPhaseFive);
+        newCandidateFormatedStructurePhaseFive = sideChainRotator(newCandidateFormatedStructurePhaseFive_1, 5, sideChainRotatorResidueIndex);
         newCandidateConteactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseFive, 2.351);
         
         for labelingIndex = 1:length(residue1List)
@@ -470,7 +480,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     
-    phiPsiAngleVariationAtLoopPhaseSix = 0.1;
+    phiPsiAngleVariationAtLoopPhaseSix = 0.05;
     clashesCriterionPhaseSix = 2.34;
     
     monteCarloOldContactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSix, clashesCriterionPhaseSix);
@@ -487,6 +497,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseSix] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseSix, 'scaling', false);
         currentCandidateFormatedBackbonePhaseSix = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseSix(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseSix);
+        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseSix);
+        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+            continue
+        end
         currentCandidateFormatedStructurePhaseSix = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseSix, monteCarloOldStructurePhaseSix);
         newCandidateFormatedStructurePhaseSix = sideChainRotator(currentCandidateFormatedStructurePhaseSix, 25, monteCarloOldContactedResidueIndexPhaseSix);
         newCandidateConteactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseSix, clashesCriterionPhaseSix);
@@ -529,7 +543,7 @@ for structureIndex = 1:structureIndexEnd
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
                       outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature monteCarloIterationNumber
-    phiPsiAngleVariationAtLoopPhaseSeven = 0.1;
+    phiPsiAngleVariationAtLoopPhaseSeven = 0.05;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseSeven(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseSeven, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -571,7 +585,8 @@ for structureIndex = 1:structureIndexEnd
             continue
         end
         currentCandidateFormatedStructurePhaseSeven = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseSeven, monteCarloOldStructurePhaseSeven);
-        newCandidateFormatedStructurePhaseSeven = sideChainRotator(currentCandidateFormatedStructurePhaseSeven, 5, sideChainRotatorResidueIndex);
+        newCandidateFormatedStructurePhaseSeven_1 = sideChainRotator(currentCandidateFormatedStructurePhaseSeven, 25, monteCarloOldContactedResidueIndexPhaseSeven);
+        newCandidateFormatedStructurePhaseSeven = sideChainRotator(newCandidateFormatedStructurePhaseSeven_1, 5, sideChainRotatorResidueIndex);
         newCandidateConteactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseSeven, 2.351);
         
         for labelingIndex = 1:length(residue1List)
@@ -630,7 +645,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     
-    phiPsiAngleVariationAtLoopPhaseEight = 0.1;
+    phiPsiAngleVariationAtLoopPhaseEight = 0.05;
     clashesCriterionPhaseEight = 2.355;
     
     monteCarloOldContactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseEight, clashesCriterionPhaseEight);
@@ -647,6 +662,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseEight] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseEight, 'scaling', false);
         currentCandidateFormatedBackbonePhaseEight = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseEight(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseEight);
+        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseEight);
+        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+            continue
+        end
         currentCandidateFormatedStructurePhaseEight = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseEight, monteCarloOldStructurePhaseEight);
         newCandidateFormatedStructurePhaseEight = sideChainRotator(currentCandidateFormatedStructurePhaseEight, 25, monteCarloOldContactedResidueIndexPhaseEight);
         newCandidateConteactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseEight, clashesCriterionPhaseEight);
@@ -685,7 +704,7 @@ for structureIndex = 1:structureIndexEnd
         maximalClashes RMSE app numberOfStructure runFileName distanceDistributionFullPath...
                       R1LibraryMatFileName R1_20210523 PDBEvolution...
                       outputTrajectoryPDBFileName outputTrajectoryDatFileName monteCarloTemperature monteCarloIterationNumber
-    phiPsiAngleVariationAtLoopPhaseNine = 0.1;
+    phiPsiAngleVariationAtLoopPhaseNine = 0.05;
     
     for MTSSLLabelingIndex = 1:length(residue1List)
         [initialSimulatedDistanceDistributionYPhaseNine(:, MTSSLLabelingIndex), ~] = DEERefineMTSSLLabeling(monteCarloOldStructurePhaseNine, residue1List(MTSSLLabelingIndex), residue2List(MTSSLLabelingIndex), R1_20210523);
@@ -727,7 +746,8 @@ for structureIndex = 1:structureIndexEnd
             continue
         end
         currentCandidateFormatedStructurePhaseNine = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseNine, monteCarloOldStructurePhaseNine);
-        newCandidateFormatedStructurePhaseNine = sideChainRotator(currentCandidateFormatedStructurePhaseNine, 5, sideChainRotatorResidueIndex);
+        newCandidateFormatedStructurePhaseNine_1 = sideChainRotator(currentCandidateFormatedStructurePhaseNine, 25, monteCarloOldContactedResidueIndexPhaseNine);
+        newCandidateFormatedStructurePhaseNine = sideChainRotator(newCandidateFormatedStructurePhaseNine_1, 5, sideChainRotatorResidueIndex);
         newCandidateConteactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseNine, 2.351);
         
         for labelingIndex = 1:length(residue1List)
@@ -750,7 +770,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldDistanceDistributionPhaseNine = monteCarloNewDistanceDistributionPhaseNine;
             monteCarloOldGeometryPhaseNine = monteCarloNewCandidateGeometryPhaseNine;
             maximalAbsoluteRMSEDifference = max(abs(monteCarloOldDistanceDistributionPhaseNine-targetDEERMaximalIndex));
-            if maximalAbsoluteRMSEDifference <= 2.8 && clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1) <= maximalClashes+2 && RMSENinethPhase(monteCarloStepsPhaseNine+1) <= RMSE+0.4
+            if maximalAbsoluteRMSEDifference <= round(RMSE*2) && clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1) <= maximalClashes+2 && RMSENinethPhase(monteCarloStepsPhaseNine+1) <= RMSE+0.4
                 increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                 fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);

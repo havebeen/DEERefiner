@@ -81,7 +81,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldGeometry = initialBackboneGeometry;
     monteCarloOldDistanceDistribution = initialDEERMaximalIndex;
     monteCarloOldStructure = initialMutatedFormatedPDB;
-    monteCarloOldContactedResidueIndex = formatedPDB2contactedResidueNumbers(monteCarloOldStructure, 2.351);
+    monteCarloOldContactedResidueIndex = formatedPDB2contactedResidueNumbers(monteCarloOldStructure, 2.4);
     
     clashedResidueNumber(1) = length(monteCarloOldContactedResidueIndex);
     
@@ -100,7 +100,7 @@ for structureIndex = 1:structureIndexEnd
         end
         currentCandidateFormatedStructure = oldSideChainInstaller(currentCandidateFormatedBackbone, monteCarloOldStructure);
         newCandidateFormatedStructure = sideChainRotator(currentCandidateFormatedStructure, 10, sideChainRotatorResidueIndex);
-        newCandidateConteactedResidueIndex = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructure, 2.351);
+        newCandidateConteactedResidueIndex = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructure, 2.4);
         
         for labelingIndex = 1:length(residue1List)
             [newCandidateSimulatedDistanceDistributionY(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructure, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
@@ -233,7 +233,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldGeometryPhaseThree = monteCarloOldGeometryPhaseThree;
     monteCarloOldDistanceDistributionPhaseThree = initialDEERMaximalIndexPhaseThree;
     monteCarloOldStructurePhaseThree = monteCarloOldStructurePhaseThree;
-    monteCarloOldContactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseThree, 2.351);
+    monteCarloOldContactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseThree, 2.4);
     clashedResidueNumberPhaseThree(1) = length(monteCarloOldContactedResidueIndexPhaseThree);
     for monteCarloStepsPhaseThree = 1:monteCarloIterationNumber
         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
@@ -255,7 +255,7 @@ for structureIndex = 1:structureIndexEnd
         currentCandidateFormatedStructurePhaseThree = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseThree, monteCarloOldStructurePhaseThree);
         newCandidateFormatedStructurePhaseThree_1 = sideChainRotator(currentCandidateFormatedStructurePhaseThree, 25, monteCarloOldContactedResidueIndexPhaseThree);
         newCandidateFormatedStructurePhaseThree = sideChainRotator(newCandidateFormatedStructurePhaseThree_1, 5, sideChainRotatorResidueIndex);
-        newCandidateConteactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseThree, 2.351);
+        newCandidateConteactedResidueIndexPhaseThree = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseThree, 2.4);
         
         for labelingIndex = 1:length(residue1List)
             [newCandidateSimulatedDistanceDistributionYPhaseThree(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseThree, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
@@ -314,7 +314,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     phiPsiAngleVariationAtLoopPhaseFour = 0.05;
-    clashesCriterionPhaseFour = 2.32;
+    clashesCriterionPhaseFour = 2.34;
     
     monteCarloOldContactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFour, clashesCriterionPhaseFour);
     clashedResidueNumberPhaseFour(1) = length(monteCarloOldContactedResidueIndexPhaseFour);
@@ -396,7 +396,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldGeometryPhaseFive = monteCarloOldGeometryPhaseFive;
     monteCarloOldDistanceDistributionPhaseFive = initialDEERMaximalIndexPhaseFive;
     monteCarloOldStructurePhaseFive = monteCarloOldStructurePhaseFive;
-    monteCarloOldContactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFive, 2.351);
+    monteCarloOldContactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseFive, 2.4);
     clashedResidueNumberPhaseFive(1) = length(monteCarloOldContactedResidueIndexPhaseFive);
     
     for monteCarloStepsPhaseFive = 1:monteCarloIterationNumber
@@ -419,7 +419,7 @@ for structureIndex = 1:structureIndexEnd
         currentCandidateFormatedStructurePhaseFive = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseFive, monteCarloOldStructurePhaseFive);
         newCandidateFormatedStructurePhaseFive_1 = sideChainRotator(currentCandidateFormatedStructurePhaseFive, 25, monteCarloOldContactedResidueIndexPhaseFive);
         newCandidateFormatedStructurePhaseFive = sideChainRotator(newCandidateFormatedStructurePhaseFive_1, 5, sideChainRotatorResidueIndex);
-        newCandidateConteactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseFive, 2.351);
+        newCandidateConteactedResidueIndexPhaseFive = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseFive, 2.4);
         
         for labelingIndex = 1:length(residue1List)
             [newCandidateSimulatedDistanceDistributionYPhaseFive(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseFive, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
@@ -481,7 +481,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     phiPsiAngleVariationAtLoopPhaseSix = 0.05;
-    clashesCriterionPhaseSix = 2.34;
+    clashesCriterionPhaseSix = 2.38;
     
     monteCarloOldContactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSix, clashesCriterionPhaseSix);
     clashedResidueNumberPhaseSix(1) = length(monteCarloOldContactedResidueIndexPhaseSix);
@@ -564,7 +564,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldGeometryPhaseSeven = monteCarloOldGeometryPhaseSeven;
     monteCarloOldDistanceDistributionPhaseSeven = initialDEERMaximalIndexPhaseSeven;
     monteCarloOldStructurePhaseSeven = monteCarloOldStructurePhaseSeven;
-    monteCarloOldContactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSeven, 2.351);
+    monteCarloOldContactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseSeven, 2.4);
     clashedResidueNumberPhaseSeven(1) = length(monteCarloOldContactedResidueIndexPhaseSeven);
     
     for monteCarloStepsPhaseSeven = 1:monteCarloIterationNumber
@@ -587,7 +587,7 @@ for structureIndex = 1:structureIndexEnd
         currentCandidateFormatedStructurePhaseSeven = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseSeven, monteCarloOldStructurePhaseSeven);
         newCandidateFormatedStructurePhaseSeven_1 = sideChainRotator(currentCandidateFormatedStructurePhaseSeven, 25, monteCarloOldContactedResidueIndexPhaseSeven);
         newCandidateFormatedStructurePhaseSeven = sideChainRotator(newCandidateFormatedStructurePhaseSeven_1, 5, sideChainRotatorResidueIndex);
-        newCandidateConteactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseSeven, 2.351);
+        newCandidateConteactedResidueIndexPhaseSeven = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseSeven, 2.4);
         
         for labelingIndex = 1:length(residue1List)
             [newCandidateSimulatedDistanceDistributionYPhaseSeven(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseSeven, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
@@ -646,7 +646,7 @@ for structureIndex = 1:structureIndexEnd
     
     
     phiPsiAngleVariationAtLoopPhaseEight = 0.05;
-    clashesCriterionPhaseEight = 2.355;
+    clashesCriterionPhaseEight = 2.42;
     
     monteCarloOldContactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseEight, clashesCriterionPhaseEight);
     clashedResidueNumberPhaseEight(1) = length(monteCarloOldContactedResidueIndexPhaseEight);
@@ -725,7 +725,7 @@ for structureIndex = 1:structureIndexEnd
     monteCarloOldGeometryPhaseNine = monteCarloOldGeometryPhaseNine;
     monteCarloOldDistanceDistributionPhaseNine = initialDEERMaximalIndexPhaseNine;
     monteCarloOldStructurePhaseNine = monteCarloOldStructurePhaseNine;
-    monteCarloOldContactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseNine, 2.351);
+    monteCarloOldContactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(monteCarloOldStructurePhaseNine, 2.4);
     clashedResidueNumberPhaseNine(1) = length(monteCarloOldContactedResidueIndexPhaseNine);
     
     for monteCarloStepsPhaseNine = 1:monteCarloIterationNumber
@@ -748,7 +748,7 @@ for structureIndex = 1:structureIndexEnd
         currentCandidateFormatedStructurePhaseNine = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseNine, monteCarloOldStructurePhaseNine);
         newCandidateFormatedStructurePhaseNine_1 = sideChainRotator(currentCandidateFormatedStructurePhaseNine, 25, monteCarloOldContactedResidueIndexPhaseNine);
         newCandidateFormatedStructurePhaseNine = sideChainRotator(newCandidateFormatedStructurePhaseNine_1, 5, sideChainRotatorResidueIndex);
-        newCandidateConteactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseNine, 2.351);
+        newCandidateConteactedResidueIndexPhaseNine = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseNine, 2.4);
         
         for labelingIndex = 1:length(residue1List)
             [newCandidateSimulatedDistanceDistributionYPhaseNine(:, labelingIndex), ~] = DEERefineMTSSLLabeling(newCandidateFormatedStructurePhaseNine, residue1List(labelingIndex), residue2List(labelingIndex), R1_20210523);
@@ -770,7 +770,7 @@ for structureIndex = 1:structureIndexEnd
             monteCarloOldDistanceDistributionPhaseNine = monteCarloNewDistanceDistributionPhaseNine;
             monteCarloOldGeometryPhaseNine = monteCarloNewCandidateGeometryPhaseNine;
             maximalAbsoluteRMSEDifference = max(abs(monteCarloOldDistanceDistributionPhaseNine-targetDEERMaximalIndex));
-            if maximalAbsoluteRMSEDifference <= round(RMSE*2) && clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1) <= maximalClashes+2 && RMSENinethPhase(monteCarloStepsPhaseNine+1) <= RMSE+0.4
+            if maximalAbsoluteRMSEDifference <= round(RMSE*2) && clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1) <= maximalClashes*1.8 && RMSENinethPhase(monteCarloStepsPhaseNine+1) <= RMSE+0.4
                 increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                 fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);

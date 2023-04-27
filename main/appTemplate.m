@@ -93,11 +93,11 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinates] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinates, 'scaling', false);
         currentCandidateFormatedBackbone = initialFormatedBackbone;
         currentCandidateFormatedBackbone(:, 9:11) = string(currentCandidateAlignedBackboneCoordinates);
-        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbone);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
-            currentStatusUpdator(currentStatusFileName, 1)
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbone);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+%             currentStatusUpdator(currentStatusFileName, 1)
+%             continue
+%         end
         currentCandidateFormatedStructure = oldSideChainInstaller(currentCandidateFormatedBackbone, monteCarloOldStructure);
         newCandidateFormatedStructure = sideChainRotator(currentCandidateFormatedStructure, 10, sideChainRotatorResidueIndex);
         newCandidateConteactedResidueIndex = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructure, 2.4);
@@ -171,10 +171,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseTwo] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseTwo, 'scaling', false);
         currentCandidateFormatedBackbonePhaseTwo = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseTwo(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseTwo);
-        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseTwo);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseTwo);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseTwo = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseTwo, monteCarloOldStructurePhaseTwo);
         newCandidateFormatedStructurePhaseTwo = sideChainRotator(currentCandidateFormatedStructurePhaseTwo, 25, monteCarloOldContactedResidueIndexPhaseTwo);
         newCandidateConteactedResidueIndexPhaseTwo = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseTwo, clashesCriterionPhaseTwo);
@@ -247,11 +247,11 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseThree] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseThree, 'scaling', false);
         currentCandidateFormatedBackbonePhaseThree = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseThree(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseThree);
-        currentCandidateMinimalBackboneNonBondedDistancePhaseThree = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseThree);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseThree 
-            currentStatusUpdator(currentStatusFileName, 6)
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistancePhaseThree = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseThree);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseThree 
+%             currentStatusUpdator(currentStatusFileName, 6)
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseThree = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseThree, monteCarloOldStructurePhaseThree);
         newCandidateFormatedStructurePhaseThree_1 = sideChainRotator(currentCandidateFormatedStructurePhaseThree, 25, monteCarloOldContactedResidueIndexPhaseThree);
         newCandidateFormatedStructurePhaseThree = sideChainRotator(newCandidateFormatedStructurePhaseThree_1, 5, sideChainRotatorResidueIndex);
@@ -330,10 +330,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseFour] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseFour, 'scaling', false);
         currentCandidateFormatedBackbonePhaseFour = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseFour(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseFour);
-        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseFour);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseFour);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseFour = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseFour, monteCarloOldStructurePhaseFour);
         newCandidateFormatedStructurePhaseFour = sideChainRotator(currentCandidateFormatedStructurePhaseFour, 25, monteCarloOldContactedResidueIndexPhaseFour);
         newCandidateConteactedResidueIndexPhaseFour = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseFour, clashesCriterionPhaseFour);
@@ -411,11 +411,11 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseFive] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseFive, 'scaling', false);
         currentCandidateFormatedBackbonePhaseFive = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseFive(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseFive);
-        currentCandidateMinimalBackboneNonBondedDistancePhaseFive = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseFive);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseFive 
-            currentStatusUpdator(currentStatusFileName, 11)
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistancePhaseFive = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseFive);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseFive 
+%             currentStatusUpdator(currentStatusFileName, 11)
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseFive = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseFive, monteCarloOldStructurePhaseFive);
         newCandidateFormatedStructurePhaseFive_1 = sideChainRotator(currentCandidateFormatedStructurePhaseFive, 25, monteCarloOldContactedResidueIndexPhaseFive);
         newCandidateFormatedStructurePhaseFive = sideChainRotator(newCandidateFormatedStructurePhaseFive_1, 5, sideChainRotatorResidueIndex);
@@ -497,10 +497,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseSix] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseSix, 'scaling', false);
         currentCandidateFormatedBackbonePhaseSix = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseSix(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseSix);
-        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseSix);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseSix);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseSix = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseSix, monteCarloOldStructurePhaseSix);
         newCandidateFormatedStructurePhaseSix = sideChainRotator(currentCandidateFormatedStructurePhaseSix, 25, monteCarloOldContactedResidueIndexPhaseSix);
         newCandidateConteactedResidueIndexPhaseSix = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseSix, clashesCriterionPhaseSix);
@@ -579,11 +579,11 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseSeven] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseSeven, 'scaling', false);
         currentCandidateFormatedBackbonePhaseSeven = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseSeven(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseSeven);
-        currentCandidateMinimalBackboneNonBondedDistancePhaseSeven = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseSeven);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseSeven 
-            currentStatusUpdator(currentStatusFileName, 16)
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistancePhaseSeven = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseSeven);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseSeven 
+%             currentStatusUpdator(currentStatusFileName, 16)
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseSeven = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseSeven, monteCarloOldStructurePhaseSeven);
         newCandidateFormatedStructurePhaseSeven_1 = sideChainRotator(currentCandidateFormatedStructurePhaseSeven, 25, monteCarloOldContactedResidueIndexPhaseSeven);
         newCandidateFormatedStructurePhaseSeven = sideChainRotator(newCandidateFormatedStructurePhaseSeven_1, 5, sideChainRotatorResidueIndex);
@@ -662,10 +662,10 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseEight] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseEight, 'scaling', false);
         currentCandidateFormatedBackbonePhaseEight = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseEight(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseEight);
-        currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseEight);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistance = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseEight);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistance 
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseEight = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseEight, monteCarloOldStructurePhaseEight);
         newCandidateFormatedStructurePhaseEight = sideChainRotator(currentCandidateFormatedStructurePhaseEight, 25, monteCarloOldContactedResidueIndexPhaseEight);
         newCandidateConteactedResidueIndexPhaseEight = formatedPDB2contactedResidueNumbers(newCandidateFormatedStructurePhaseEight, clashesCriterionPhaseEight);
@@ -740,11 +740,11 @@ for structureIndex = 1:structureIndexEnd
         [~, currentCandidateAlignedBackboneCoordinatesPhaseNine] = procrustes(initialBackboneCoordinates, currentCandidateBackboneCoordinatesPhaseNine, 'scaling', false);
         currentCandidateFormatedBackbonePhaseNine = initialFormatedBackbone;
         currentCandidateFormatedBackbonePhaseNine(:, 9:11) = string(currentCandidateAlignedBackboneCoordinatesPhaseNine);
-        currentCandidateMinimalBackboneNonBondedDistancePhaseNine = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseNine);
-        if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseNine 
-            currentStatusUpdator(currentStatusFileName, 21)
-            continue
-        end
+%         currentCandidateMinimalBackboneNonBondedDistancePhaseNine = formatedBackbone2MinimalBackboneNonBondedDistance(currentCandidateFormatedBackbonePhaseNine);
+%         if minimalBackboneNonBondedDistance*0.98 > currentCandidateMinimalBackboneNonBondedDistancePhaseNine 
+%             currentStatusUpdator(currentStatusFileName, 21)
+%             continue
+%         end
         currentCandidateFormatedStructurePhaseNine = oldSideChainInstaller(currentCandidateFormatedBackbonePhaseNine, monteCarloOldStructurePhaseNine);
         newCandidateFormatedStructurePhaseNine_1 = sideChainRotator(currentCandidateFormatedStructurePhaseNine, 25, monteCarloOldContactedResidueIndexPhaseNine);
         newCandidateFormatedStructurePhaseNine = sideChainRotator(newCandidateFormatedStructurePhaseNine_1, 5, sideChainRotatorResidueIndex);

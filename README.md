@@ -87,3 +87,6 @@ Job = runFilesCluterExecutor;
 
 # License
 Distributed under the MIT license. See`LICENSE.TXT` for more information.
+
+# Citation
+Cite the program: Physical Chemistry Chemical Physics, 2023, DOI: 10.1039/D3CP02569A

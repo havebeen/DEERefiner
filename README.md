@@ -20,7 +20,7 @@ MATLAB R2021a on macOS Monterey
 1. Clone the repository (or download the whole folder)
 ```Bash
 # Download the DEERefiner folder
-git clone https://github.com/havebeen/DEERefiner/
+git clone https://github.com/teyukao/DEERefiner/
 ```
 2. Set the DEERefiner folder to your MATLAB path
 

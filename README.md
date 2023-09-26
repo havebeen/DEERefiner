@@ -89,4 +89,4 @@ Job = runFilesCluterExecutor;
 Distributed under the MIT license. See`LICENSE.TXT` for more information.
 
 # Citation
-Cite the program: Physical Chemistry Chemical Physics, 2023, DOI: 10.1039/D3CP02569A
+Cite the DEERefiner paper: "DEERefiner-assisted structural refinement using pulsed dipolar spectroscopy: a study on multidrug transporter LmrP", Phys. Chem. Chem. Phys., 2023, 25, 24508-24517 doi: 10.1039/D3CP02569A

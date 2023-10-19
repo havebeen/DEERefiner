@@ -887,7 +887,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -1778,7 +1778,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -2666,7 +2666,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -3558,7 +3558,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -4455,7 +4455,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -5357,7 +5357,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -6263,7 +6263,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -7173,7 +7173,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -8088,7 +8088,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
@@ -9008,7 +9008,7 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp, simulationIndex)
                         newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
                         pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 

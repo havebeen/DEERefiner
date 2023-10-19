@@ -139,8 +139,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 2)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, PDBEvolution)
-                    newCandidateFormatedStructure(:, 12) = "  1.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructure)
+                    if  mod(length(clashedResidueNumber),10)==0
+                        newCandidateFormatedStructure(:, 12) = "  1.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructure)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1), clashedResidueNumber(monteCarloSteps+1))
                     monteCarloOldContactedResidueIndex = newCandidateConteactedResidueIndex;
@@ -156,7 +159,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseTwo = monteCarloOldStructure;
                         monteCarloOldStructurePhaseTwo(:, 12) = "  1.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseTwo)
-                        pdbSaver('state1Final.pdb', monteCarloOldStructurePhaseTwo)
+%                         pdbSaver('state1Final.pdb', monteCarloOldStructurePhaseTwo)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end
@@ -217,8 +220,13 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseTwo = newCandidateFormatedStructurePhaseTwo;
                     monteCarloOldGeometryPhaseTwo = monteCarloNewCandidateGeometryPhaseTwo;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, PDBEvolution)
-                    newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
+                    if  mod(length(clashedResidueNumberPhaseTwo),10)==0
+                        newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
+                    else
+                    end
+%                     newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
+%                     pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
                     datSaver(outputTrajectoryDatFileName, phaseTwoSteps, 0, clashedResidueNumberPhaseTwo(phaseTwoSteps+1))
                     if clashedResidueNumberPhaseTwo(phaseTwoSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 5)
@@ -226,7 +234,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseTwo;
                         monteCarloOldStructurePhaseThree(:, 12) = "  2.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseThree)
-                        pdbSaver('state2Final.pdb', monteCarloOldStructurePhaseThree)
+%                         pdbSaver('state2Final.pdb', monteCarloOldStructurePhaseThree)
                         break
                     end 
                 else
@@ -308,8 +316,12 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 7)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, PDBEvolution)
-                    newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    if  mod(length(clashedResidueNumberThirdPhase),10)==0
+                        newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    else
+                    end
+                    
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1), clashedResidueNumberThirdPhase(monteCarloStepsPhaseThree+1))
                     monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
@@ -324,7 +336,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFour = monteCarloOldStructurePhaseThree;
                         monteCarloOldStructurePhaseFour(:, 12) = "  3.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFour)
-                        pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
+%                         pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end
@@ -389,8 +401,12 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
                     monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    if  mod(length(clashedResidueNumberPhaseFour),10)==0
+                        newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    else
+                    end
+
                     datSaver(outputTrajectoryDatFileName, phaseFourSteps, 0, clashedResidueNumberPhaseFour(phaseFourSteps+1))
                     if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 10)
@@ -398,7 +414,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFour;
                         monteCarloOldStructurePhaseFive(:, 12) = "  4.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFive)
-                        pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
+%                         pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
                         break
                     end 
                 else
@@ -484,8 +500,12 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 12)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    if  mod(length(clashedResidueNumberFifthPhase),10)==0
+                        newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    else
+                    end
+
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
                     monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
@@ -500,7 +520,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
                         monteCarloOldStructurePhaseSix(:, 12) = "  5.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSix)
-                        pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
+%                         pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -567,8 +587,12 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
+
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -576,7 +600,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -664,8 +688,12 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
+
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -680,7 +708,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -744,8 +772,12 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
+
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -753,7 +785,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -837,9 +869,13 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end
+
+%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -851,7 +887,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -1001,8 +1039,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 2)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructure, PDBEvolution)
-                    newCandidateFormatedStructure(:, 12) = "  1.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructure)
+                    if  mod(length(clashedResidueNumber),10)==0
+                        newCandidateFormatedStructure(:, 12) = "  1.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructure)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloSteps, RMSEFirstPhase(monteCarloSteps+1), clashedResidueNumber(monteCarloSteps+1))
                     monteCarloOldContactedResidueIndex = newCandidateConteactedResidueIndex;
@@ -1018,7 +1059,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseTwo = monteCarloOldStructure;
                         monteCarloOldStructurePhaseTwo(:, 12) = "  1.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseTwo)
-                        pdbSaver('state1Final.pdb', monteCarloOldStructurePhaseTwo)
+%                         pdbSaver('state1Final.pdb', monteCarloOldStructurePhaseTwo)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end
@@ -1079,8 +1120,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseTwo = newCandidateFormatedStructurePhaseTwo;
                     monteCarloOldGeometryPhaseTwo = monteCarloNewCandidateGeometryPhaseTwo;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, PDBEvolution)
-                    newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
+                    if  mod(length(clashedResidueNumberPhaseTwo),10)==0
+                        newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseTwoSteps, 0, clashedResidueNumberPhaseTwo(phaseTwoSteps+1))
                     if clashedResidueNumberPhaseTwo(phaseTwoSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 5)
@@ -1088,7 +1132,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseTwo;
                         monteCarloOldStructurePhaseThree(:, 12) = "  2.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseThree)
-                        pdbSaver('state2Final.pdb', monteCarloOldStructurePhaseThree)
+%                         pdbSaver('state2Final.pdb', monteCarloOldStructurePhaseThree)
                         break
                     end 
                 else
@@ -1170,8 +1214,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 7)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, PDBEvolution)
-                    newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    if  mod(length(clashedResidueNumberThirdPhase),10)==0
+                        newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1), clashedResidueNumberThirdPhase(monteCarloStepsPhaseThree+1))
                     monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
@@ -1186,7 +1233,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFour = monteCarloOldStructurePhaseThree;
                         monteCarloOldStructurePhaseFour(:, 12) = "  3.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFour)
-                        pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
+%                         pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end
@@ -1251,8 +1298,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
                     monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    if  mod(length(clashedResidueNumberPhaseFour),10)==0
+                        newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseFourSteps, 0, clashedResidueNumberPhaseFour(phaseFourSteps+1))
                     if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 10)
@@ -1260,7 +1310,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFour;
                         monteCarloOldStructurePhaseFive(:, 12) = "  4.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFive)
-                        pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
+%                         pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
                         break
                     end 
                 else
@@ -1346,8 +1396,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 12)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    if  mod(length(clashedResidueNumberFifthPhase),10)==0
+                        newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
                     monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
@@ -1362,7 +1415,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
                         monteCarloOldStructurePhaseSix(:, 12) = "  5.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSix)
-                        pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
+%                         pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -1429,8 +1482,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -1438,7 +1494,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -1526,8 +1582,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -1542,7 +1601,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -1606,8 +1665,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -1615,7 +1677,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -1699,9 +1761,12 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end
+                    %                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -1713,7 +1778,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -1942,8 +2009,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseTwo = newCandidateFormatedStructurePhaseTwo;
                     monteCarloOldGeometryPhaseTwo = monteCarloNewCandidateGeometryPhaseTwo;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseTwo, PDBEvolution)
-                    newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
+                    if  mod(length(clashedResidueNumberPhaseTwo),10)==0
+                        newCandidateFormatedStructurePhaseTwo(:, 12) = "  2.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseTwo)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseTwoSteps, 0, clashedResidueNumberPhaseTwo(phaseTwoSteps+1))
                     if clashedResidueNumberPhaseTwo(phaseTwoSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 5)
@@ -1951,7 +2021,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseThree = newCandidateFormatedStructurePhaseTwo;
                         monteCarloOldStructurePhaseThree(:, 12) = "  2.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseThree)
-                        pdbSaver('state2Final.pdb', monteCarloOldStructurePhaseThree)
+%                         pdbSaver('state2Final.pdb', monteCarloOldStructurePhaseThree)
                         break
                     end 
                 else
@@ -2033,8 +2103,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 7)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, PDBEvolution)
-                    newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    if  mod(length(clashedResidueNumberThirdPhase),10)==0
+                        newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1), clashedResidueNumberThirdPhase(monteCarloStepsPhaseThree+1))
                     monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
@@ -2049,7 +2122,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFour = monteCarloOldStructurePhaseThree;
                         monteCarloOldStructurePhaseFour(:, 12) = "  3.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFour)
-                        pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
+%                         pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end
@@ -2114,8 +2187,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
                     monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    if  mod(length(clashedResidueNumberPhaseFour),10)==0
+                        newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseFourSteps, 0, clashedResidueNumberPhaseFour(phaseFourSteps+1))
                     if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 10)
@@ -2123,7 +2199,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFour;
                         monteCarloOldStructurePhaseFive(:, 12) = "  4.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFive)
-                        pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
+%                         pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
                         break
                     end 
                 else
@@ -2209,8 +2285,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 12)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    if  mod(length(clashedResidueNumberFifthPhase),10)==0
+                        newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
                     monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
@@ -2225,7 +2304,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
                         monteCarloOldStructurePhaseSix(:, 12) = "  5.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSix)
-                        pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
+%                         pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -2292,8 +2371,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -2301,7 +2383,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -2389,8 +2471,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -2405,7 +2490,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -2469,8 +2554,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -2478,7 +2566,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -2562,9 +2650,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -2576,7 +2666,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -2903,8 +2995,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 7)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseThree, PDBEvolution)
-                    newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    if  mod(length(clashedResidueNumberThirdPhase),10)==0
+                        newCandidateFormatedStructurePhaseThree(:, 12) = "  3.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseThree)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseThree, RMSEThirdPhase(monteCarloStepsPhaseThree+1), clashedResidueNumberThirdPhase(monteCarloStepsPhaseThree+1))
                     monteCarloOldContactedResidueIndexPhaseThree = newCandidateConteactedResidueIndexPhaseThree;
@@ -2919,7 +3014,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFour = monteCarloOldStructurePhaseThree;
                         monteCarloOldStructurePhaseFour(:, 12) = "  3.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFour)
-                        pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
+%                         pdbSaver('stage3Final.pdb', monteCarloOldStructurePhaseFour)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end
@@ -2984,8 +3079,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
                     monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    if  mod(length(clashedResidueNumberPhaseFour),10)==0
+                        newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseFourSteps, 0, clashedResidueNumberPhaseFour(phaseFourSteps+1))
                     if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 10)
@@ -2993,7 +3091,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFour;
                         monteCarloOldStructurePhaseFive(:, 12) = "  4.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFive)
-                        pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
+%                         pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
                         break
                     end 
                 else
@@ -3079,8 +3177,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 12)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    if  mod(length(clashedResidueNumberFifthPhase),10)==0
+                        newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
                     monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
@@ -3095,7 +3196,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
                         monteCarloOldStructurePhaseSix(:, 12) = "  5.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSix)
-                        pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
+%                         pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -3162,8 +3263,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -3171,7 +3275,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -3259,8 +3363,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -3275,7 +3382,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -3339,8 +3446,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -3348,7 +3458,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -3432,9 +3542,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -3446,7 +3558,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -3862,8 +3976,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseFour = newCandidateFormatedStructurePhaseFour;
                     monteCarloOldGeometryPhaseFour = monteCarloNewCandidateGeometryPhaseFour;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFour, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    if  mod(length(clashedResidueNumberPhaseFour),10)==0
+                        newCandidateFormatedStructurePhaseFour(:, 12) = "  4.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFour)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseFourSteps, 0, clashedResidueNumberPhaseFour(phaseFourSteps+1))
                     if clashedResidueNumberPhaseFour(phaseFourSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 10)
@@ -3871,7 +3988,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseFive = newCandidateFormatedStructurePhaseFour;
                         monteCarloOldStructurePhaseFive(:, 12) = "  4.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseFive)
-                        pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
+%                         pdbSaver('stage4Final.pdb', monteCarloOldStructurePhaseFive)
                         break
                     end 
                 else
@@ -3957,8 +4074,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 12)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    if  mod(length(clashedResidueNumberFifthPhase),10)==0
+                        newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
                     monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
@@ -3973,7 +4093,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
                         monteCarloOldStructurePhaseSix(:, 12) = "  5.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSix)
-                        pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
+%                         pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -4040,8 +4160,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -4049,7 +4172,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -4137,8 +4260,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -4153,7 +4279,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -4217,8 +4343,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -4226,7 +4355,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -4310,9 +4439,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -4324,7 +4455,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -4843,8 +4976,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 12)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseFive, PDBEvolution)
-                    newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    if  mod(length(clashedResidueNumberFifthPhase),10)==0
+                        newCandidateFormatedStructurePhaseFive(:, 12) = "  5.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseFive)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseFive, RMSEFifthPhase(monteCarloStepsPhaseFive+1), clashedResidueNumberFifthPhase(monteCarloStepsPhaseFive+1))
                     monteCarloOldContactedResidueIndexPhaseFive = newCandidateConteactedResidueIndexPhaseFive;
@@ -4859,7 +4995,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSix = monteCarloOldStructurePhaseFive;
                         monteCarloOldStructurePhaseSix(:, 12) = "  5.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSix)
-                        pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
+%                         pdbSaver('stage5Final.pdb', monteCarloOldStructurePhaseSix)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -4926,8 +5062,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -4935,7 +5074,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -5023,8 +5162,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -5039,7 +5181,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -5103,8 +5245,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -5112,7 +5257,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -5196,9 +5341,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -5210,7 +5357,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -5819,8 +5968,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseSix = newCandidateFormatedStructurePhaseSix;
                     monteCarloOldGeometryPhaseSix = monteCarloNewCandidateGeometryPhaseSix;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSix, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    if  mod(length(clashedResidueNumberPhaseSix),10)==0
+                        newCandidateFormatedStructurePhaseSix(:, 12) = "  6.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSix)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseSixSteps, 0, clashedResidueNumberPhaseSix(phaseSixSteps+1))
                     if clashedResidueNumberPhaseSix(phaseSixSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 15)
@@ -5828,7 +5980,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseSeven = newCandidateFormatedStructurePhaseSix;
                         monteCarloOldStructurePhaseSeven(:, 12) = "  6.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseSeven)
-                        pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
+%                         pdbSaver('stage6Final.pdb', monteCarloOldStructurePhaseSeven)
                         break
                     end 
                 else
@@ -5916,8 +6068,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -5932,7 +6087,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -5996,8 +6151,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -6005,7 +6163,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -6089,9 +6247,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -6103,7 +6263,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -6816,8 +6978,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 17)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseSeven, PDBEvolution)
-                    newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    if  mod(length(clashedResidueNumberSeventhPhase),10)==0
+                        newCandidateFormatedStructurePhaseSeven(:, 12) = "  7.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseSeven)
+                    else
+                    end
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseSeven, RMSESeventhPhase(monteCarloStepsPhaseSeven+1), clashedResidueNumberSeventhPhase(monteCarloStepsPhaseSeven+1))
                     monteCarloOldContactedResidueIndexPhaseSeven = newCandidateConteactedResidueIndexPhaseSeven;
@@ -6832,7 +6997,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseEight = monteCarloOldStructurePhaseSeven;
                         monteCarloOldStructurePhaseEight(:, 12) = "  7.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseEight)
-                        pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
+%                         pdbSaver('stage7Final.pdb', monteCarloOldStructurePhaseEight)
             %             pdbSaver(phaseOnePassedFileName, newCandidateFormatedStructure);
                         break
                     end 
@@ -6896,8 +7061,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -6905,7 +7073,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -6989,9 +7157,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -7003,7 +7173,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -7804,8 +7976,11 @@ for structureIndex = 1:structureIndexEnd
                     monteCarloOldStructurePhaseEight = newCandidateFormatedStructurePhaseEight;
                     monteCarloOldGeometryPhaseEight = monteCarloNewCandidateGeometryPhaseEight;
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseEight, PDBEvolution)
-                    newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    if  mod(length(clashedResidueNumberPhaseEight),10)==0
+                        newCandidateFormatedStructurePhaseEight(:, 12) = "  8.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseEight)
+                    else
+                    end
                     datSaver(outputTrajectoryDatFileName, phaseEightSteps, 0, clashedResidueNumberPhaseEight(phaseEightSteps+1))
                     if clashedResidueNumberPhaseEight(phaseEightSteps+1) <= maximalClashes
                         currentStatusUpdator(currentStatusFileName, 20)
@@ -7813,7 +7988,7 @@ for structureIndex = 1:structureIndexEnd
                         monteCarloOldStructurePhaseNine = newCandidateFormatedStructurePhaseEight;
                         monteCarloOldStructurePhaseNine(:, 12) = "  8.00";
                         pdbSaver(restartPDBFileName, monteCarloOldStructurePhaseNine)
-                        pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
+%                         pdbSaver('stage8Final.pdb', monteCarloOldStructurePhaseNine)
                         break
                     end 
                 else
@@ -7897,9 +8072,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -7911,7 +8088,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -8813,9 +8992,11 @@ for structureIndex = 1:structureIndexEnd
                 if DEERIfMovingCriterion == 1 && clashesIfMovingCriterion == 1
                     currentStatusUpdator(currentStatusFileName, 22)
                     PDBEvolutionSaver(outputTrajectoryPDBFileName, newCandidateFormatedStructurePhaseNine, PDBEvolution)
-                    newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
-                    pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
-                        pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
+                    if  mod(length(clashedResidueNumberNinethPhase),10)==0
+                        newCandidateFormatedStructurePhaseNine(:, 12) = "  9.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
+                    else
+                    end%                         pdbSaver('stage9Final.pdb', newCandidateFormatedStructurePhaseNine)
         %             RMSEDatSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1))
                     datSaver(outputTrajectoryDatFileName, monteCarloStepsPhaseNine, RMSENinethPhase(monteCarloStepsPhaseNine+1), clashedResidueNumberNinethPhase(monteCarloStepsPhaseNine+1))
                     monteCarloOldContactedResidueIndexPhaseNine = newCandidateConteactedResidueIndexPhaseNine;
@@ -8827,7 +9008,9 @@ for structureIndex = 1:structureIndexEnd
                         increaseFifthRMSEPassedNumber(fifthRMSEPassedNumberFileName)
 
                         fifthRMSEPassedNumber = load(fifthRMSEPassedNumberFileName);
-                        candidateGenerator(fifthRMSEPassedNumber, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        candidateGenerator(structureIndex, newCandidateFormatedStructurePhaseNine, timeStamp)
+                        newCandidateFormatedStructurePhaseNine(:, 12) = " 10.00";
+                        pdbSaver(restartPDBFileName, newCandidateFormatedStructurePhaseNine)
 
                         currentStatusUpdator(currentStatusFileName, 23)
 
@@ -8879,7 +9062,7 @@ for structureIndex = 1:structureIndexEnd
 
             end                               
         otherwise
-            return
+
     end
     
 
